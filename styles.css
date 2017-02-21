@@ -1,0 +1,125 @@
+div#header{
+	background-color: #4E89BD
+;
+	margin: 0;
+	color: white;
+	height: 100px;
+	padding: 2%;
+}
+
+div#header h1{
+	margin: 0;
+}
+
+div.layout_group{display: none;}
+div#group_2{display: block;}
+
+div.button_container{
+	width: 80%;
+	margin:5% 10% 5% 10%;
+	text-align: right;
+}
+
+div.photo_layout_example{
+	height: 150px;
+	width: 150px;
+	background-color: #fff;
+	display: inline-block;
+	margin: 2%;
+	padding: 1%;
+	cursor: pointer;
+}
+
+div.selected{
+	border: 2px solid #e05158;
+}
+
+div.photo_layout_example > div{
+	background-color: #D090D7;
+}
+
+div#lay_21_1, div#lay_21_2{
+	width: 98%;
+	height: 48%;
+	margin: 2%;
+}
+
+div#lay_22_1, div#lay_22_2{
+	height: 98%;
+	width: 48%;
+	margin: 1%;
+}
+
+div#lay_22_1,div#lay_22_2{float: left;}
+
+div#lay_31_1,div#lay_31_2,div#lay_31_3{
+	width: 98%;
+	height: 31%;
+	margin: 1% 2% 2% 2%;
+}
+
+div#lay_32_1,div#lay_32_2,div#lay_32_3{
+	width: 30%;
+	height: 98%;
+	margin: 2% 1% 2% 2%;
+}
+
+div#lay_32_1,div#lay_32_2,div#lay_32_3{float: left;} 
+
+div#lay_33_1{
+	width: 98%;
+	height: 48%;
+	margin: 1%;
+}
+
+div#lay_33_2,div#lay_33_3{
+	height: 48%;
+	width: 48%;
+	margin: 1% 1% 1% 1%;
+}
+div#lay_33_2,div#lay_33_3{float: left;} 
+
+div#lay_34_1,div#lay_34_2{
+	height: 48%;
+	width: 48%;
+	margin: 1% 1% 2% 1%;
+}
+div#lay_34_1,div#lay_34_2{float: left;} 
+
+div#lay_34_3{
+	width: 98%;
+	height: 48%;
+	margin: 1%;
+	clear: both;
+}
+
+div#lay_35_1{
+	width: 48%;
+	height: 98%;
+	margin: 1% 1% 1% 1%;
+	float: left;
+}
+
+div#lay_35_2,div#lay_35_3{
+	width: 48%;
+	height: 48%;
+	margin: 1% 1% 1% 1%;
+	float: left;
+}
+
+div#lay_36_2,div#lay_36_3{
+	width: 48%;
+	height: 48%;
+	margin: 1% 1% 1% 1%;
+	float: left;
+}
+
+div#lay_36_1{
+	width: 48%;
+	height: 98%;
+	margin: 1% 1% 1% 1%;
+	float: right;
+}
+
+
+
