@@ -1,6 +1,5 @@
 div#header{
-	background-color: #4E89BD
-;
+	background-color: #4E89BD;
 	margin: 0;
 	color: white;
 	height: 100px;
@@ -50,6 +49,49 @@ div#photo_layout_main > div{
 div.selected{
 	border: 2px solid #e05158;
 }
+
+.upload {
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.upload + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer; 
+}
+
+#lbl_upload{
+	line-height: 60px;
+	padding-left: 60px;
+	background: url("upload_icon.png") no-repeat scroll 0 0 transparent;	
+}
+
+
+.upload:focus + label,
+.upload + label:hover {
+    background-color: red;
+}
+
+.upload:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+.thumb {
+	height: 100%;
+	border: 1px solid #000;
+	margin: 10px 5px 0 0;
+}
+
 
 
 

@@ -66,11 +66,12 @@
 
 	<div id="layout_main_container">
 		<div id="photo_layout_main"></div>
-	</div>
-	
+	</div>   
 	<div class="button_container">
 		<button type="button" id="back" class="btn btn-primary">Previous</button>
 		<button type="button" id="next" class="btn btn-primary">Next</button>	
 	</div>	
 </div>
+
+
 <?php include('footer.php'); ?>
