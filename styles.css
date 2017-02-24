@@ -50,6 +50,7 @@ div.selected{
 	border: 2px solid #e05158;
 }
 
+/**** STYLES FOR CHOOSE FILE BUTTONS ****/
 .upload {
     width: 0.1px;
 	height: 0.1px;
@@ -73,26 +74,23 @@ div.selected{
 	padding-left: 60px;
 	background: url("upload_icon.png") no-repeat scroll 0 0 transparent;	
 }
-
-
 .upload:focus + label,
 .upload + label:hover {
     background-color: red;
 }
-
 .upload:focus + label {
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
 }
 
+/**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
-.thumb {
+
+.photo {
 	height: 100%;
 	border: 1px solid #000;
 	margin: 10px 5px 0 0;
 }
-
-
 
 
 div.lay_21_1, div.lay_21_2{

@@ -45,19 +45,17 @@ $(function() {
 		for (var i = 1; i <= total_photos; i++) {
 			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +'"></div>');
 
-		
+			//For each div, we append a file type input and an event listener, so we can upload images individually
 			var inputAndListener= '<input type="file" id="files_' + i +'" name="files'+ '_' + i + '[] "/>'+
-			'<output id="photo_' + i +'"></output>'+
-			'<script>'+						
-				'document.getElementById("files' + '_' + i + '").addEventListener("change", handleFileSelect, false);' +
-			'</script>';
-				
+			'<output id="photo_' + i +'"></output>';
 			$('#photo_layout_main > .' + layout_class + '_' + i ).append(inputAndListener);
 
 		};
 
 		$("#layout_group_container").css("display","none");
 		$("#layout_main_container").css("display","block");
+
+		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
 
 
 	});
@@ -70,32 +68,41 @@ $(function() {
 });
 
 
-
 function handleFileSelect(event) {
-		
+
+	//Getting the id of the clicked file input
+	if (event.target !== event.currentTarget) {        
+        var clicked_input = event.target.id;
+    }
+    //Stopping the propagation at the parent element just to avoid having to deal with the event running up and down the DOM.
+
+    event.stopPropagation();
+
 	var files = event.target.files;	
+
 	// Loop through the FileList and render image files.	
 	for (var i = 0, f; f = files[i]; i++) {
 
-	// Only process image files.
-	if (!f.type.match('image.*')) {
-	continue;
-	}
+		// Only process image files.
+		if (!f.type.match('image.*')) {
+			continue;
+		}
 
-	var reader = new FileReader();
-	//From the listener event, we get the input id
-	var photoId = event.target.name.charAt(6); 
+		//From the clicked input, we form the name of the container we will load the  photo in by replaciong the string "files" with "photo"
+		var container_id = clicked_input.replace(/files/gi, "photo");
+		var reader = new FileReader();
 
-	// Closure to capture the file information.
-	reader.onload = (function(theFile) {
-		return function(e) {
-		  // Render thumbnail.
-		  var span = document.createElement('span');
-		  span.innerHTML = ['<img class="thumb" src="', e.target.result,
-		                    '" title="', escape(theFile.name), '"/>'].join('');
-		  document.getElementById('photo_' + photoId).insertBefore(span, null);
-		};
-	})(f);
+		// Closure to capture the file information.
+		reader.onload = (function(file) {
+			return function(e) {
+			 	// Render thumbnail.
+			  	var span = document.createElement('span');
+			  	span.innerHTML = ['<img class="photo" src="', e.target.result,
+			                    '" title="', escape(file.name), '"/>'].join('');
+			    //Adding the loaded photo
+				document.getElementById(container_id).insertBefore(span, null);
+			};
+		})(f);
 
 	  // Read in the image file as a data URL.
 	  reader.readAsDataURL(f);
