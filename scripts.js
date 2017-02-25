@@ -1,6 +1,5 @@
 
 $(function() {
-
 	// Check for the various File API support.
 	if(!(window.File && window.FileReader && window.FileList && window.Blob))
 	{
@@ -31,7 +30,7 @@ $(function() {
 
 	//When clicking the next button...
 	$( "#next" ).click(function() {
-		
+
 		//...we get the classes from the selected layout example.The class we need to get the layout is the first one of the list (with format "lay_##"). We use the split method to get it.		
 		classes_array = $('.selected').attr('class').split(" ");
 
@@ -53,7 +52,6 @@ $(function() {
 
 			//We make the photo draggable using JQuery UI
 			$( "#photo_" + i ).draggable();
-
 		};
 
 		$("#layout_group_container").css("display","none");
@@ -61,17 +59,15 @@ $(function() {
 
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
-
 	});
-
 
 	$( "#upload_btn" ).submit(function( event ) {
 	 	$( "#upload_form" ).submit();
 	});
-
 });
 
-
+/* function handleFileSelect(event)
+Validates and upload of every photo without the need of a server */
 function handleFileSelect(event) {
 
 	//Getting the id of the clicked file input
@@ -81,7 +77,6 @@ function handleFileSelect(event) {
     //Stopping the propagation at the parent element just to avoid having to deal with the event running up and down the DOM.
 
     event.stopPropagation();
-
 	var files = event.target.files;	
 
 	// Loop through the FileList and render image files.	
@@ -94,7 +89,6 @@ function handleFileSelect(event) {
 
 		//From the clicked input, we form the name of the container we will load the  photo in by replaciong the string "files" with "photo"
 		var container_id = clicked_input.replace(/files/gi, "photo");
-
 		var reader = new FileReader();
 
 		// Closure to capture the file information.
@@ -104,6 +98,7 @@ function handleFileSelect(event) {
 			  	var span = document.createElement('span');
 			  	span.innerHTML = ['<img class="photo draggable ui-widget-content" src="', e.target.result,
 			                    '" title="', escape(file.name), '"/>'].join('');
+			   
 			    //Adding the loaded photo
 				document.getElementById(container_id).insertBefore(span, null);
 
@@ -118,7 +113,13 @@ function handleFileSelect(event) {
 	}
 }
 
+/* function deletePhoto(container_id)
+ When clicking the red close icon, it deletes the uploaded photo
+ Receives the id of the container to empty */
 function deletePhoto(container_id){	
 	var container = document.getElementById("photo_"+ container_id);
 	container.innerHTML = '';
+	//Restoring the input value to "No file chosen"
+	document.getElementById("files_" + container_id).value = '';
+	document.getElementById("close_" + container_id).style.display = "none";
 }

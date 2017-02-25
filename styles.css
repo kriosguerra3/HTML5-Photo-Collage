@@ -53,6 +53,9 @@ div#photo_layout_main > div{
 	height: 100%;
 	margin: 10px 5px 0 0;
 	cursor: move;
+	position: relative;
+	top: -100px;
+	left: -50px;
 }
 
 .close_icon{
@@ -60,6 +63,7 @@ div#photo_layout_main > div{
 	position: absolute;
 	cursor: pointer;
 	display: none;
+	height: 25px;
 }
 
 div.selected{
