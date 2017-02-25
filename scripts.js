@@ -43,20 +43,24 @@ $(function() {
 		
 		//We append to the big layout we will be building our collage on the divs and classes from the selected layout
 		for (var i = 1; i <= total_photos; i++) {
-			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +'"></div>');
+			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +'">'
+												+'<img id = "close_'+ i +'" class="close_icon" onClick="deletePhoto(' + i + ')" src="close.png"></div>');
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
-			var inputAndListener= '<input type="file" id="files_' + i +'" name="files'+ '_' + i + '[] "/>'+
-			'<output id="photo_' + i +'"></output>';
+			var inputAndListener= '<input type="file" id="files_' + i +'" name="files'+ '_' + i + '[] "/>'
+									+'<output id="photo_' + i +'"></output>';
 			$('#photo_layout_main > .' + layout_class + '_' + i ).append(inputAndListener);
+
+			//We make the photo draggable using JQuery UI
+			$( "#photo_" + i ).draggable();
 
 		};
 
 		$("#layout_group_container").css("display","none");
 		$("#layout_main_container").css("display","block");
 
+		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
-
 
 	});
 
@@ -90,6 +94,7 @@ function handleFileSelect(event) {
 
 		//From the clicked input, we form the name of the container we will load the  photo in by replaciong the string "files" with "photo"
 		var container_id = clicked_input.replace(/files/gi, "photo");
+
 		var reader = new FileReader();
 
 		// Closure to capture the file information.
@@ -97,10 +102,14 @@ function handleFileSelect(event) {
 			return function(e) {
 			 	// Render thumbnail.
 			  	var span = document.createElement('span');
-			  	span.innerHTML = ['<img class="photo" src="', e.target.result,
+			  	span.innerHTML = ['<img class="photo draggable ui-widget-content" src="', e.target.result,
 			                    '" title="', escape(file.name), '"/>'].join('');
 			    //Adding the loaded photo
 				document.getElementById(container_id).insertBefore(span, null);
+
+				//Every photo container has a unique close icon assigned which is hidden. We  get the id of it and display it now that we have a photo uploaded.
+				var close_icon_id = container_id.replace(/photo/gi, "close");
+				document.getElementById(close_icon_id).style.display = "block";
 			};
 		})(f);
 
@@ -109,3 +118,7 @@ function handleFileSelect(event) {
 	}
 }
 
+function deletePhoto(container_id){	
+	var container = document.getElementById("photo_"+ container_id);
+	container.innerHTML = '';
+}

@@ -64,6 +64,7 @@
 		</div>
 	</div>
 
+
 	<div id="layout_main_container">
 		<div id="photo_layout_main"></div>
 	</div>   

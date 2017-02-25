@@ -44,6 +44,22 @@ div#photo_layout_main{
 
 div#photo_layout_main > div{
 	background-color: #D090D7;
+	z-index: 10;
+	overflow: hidden;
+}
+
+.photo {
+	z-index: 9;
+	height: 100%;
+	margin: 10px 5px 0 0;
+	cursor: move;
+}
+
+.close_icon{
+	z-index: 10;
+	position: absolute;
+	cursor: pointer;
+	display: none;
 }
 
 div.selected{
@@ -51,6 +67,7 @@ div.selected{
 }
 
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
+
 .upload {
     width: 0.1px;
 	height: 0.1px;
@@ -86,11 +103,7 @@ div.selected{
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
 
-.photo {
-	height: 100%;
-	border: 1px solid #000;
-	margin: 10px 5px 0 0;
-}
+
 
 
 div.lay_21_1, div.lay_21_2{
