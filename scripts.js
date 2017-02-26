@@ -40,14 +40,19 @@ $(function() {
 		//We get the number of photos of the layout so we can dinamically build it on the next step.
 		total_photos = layout_class.charAt(4);
 		
-		//We append to the big layout we will be building our collage on the divs and classes from the selected layout
+		//We append to the big layout we will be building our collage on the divs and classes from the selected layout. We add also the additional class "photo"
 		for (var i = 1; i <= total_photos; i++) {
-			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +'">'
-												+'<img id = "close_'+ i +'" class="close_icon" onClick="deletePhoto(' + i + ')" src="close.png"></div>');
+			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +' photo">'
+												+ '<img id = "close_'+ i +'"'
+												+ ' class="close_icon" onClick="deletePhoto(' + i + ')"'
+												+ ' src="close.png"></div>');
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
-			var inputAndListener= '<input type="file" id="files_' + i +'" name="files'+ '_' + i + '[] "/>'
-									+'<output id="photo_' + i +'"></output>';
+			var inputAndListener= '<input type="file" id="files_' + i +'" '
+									+ '	name="files'+ '_' + i + '[] "/>'
+									+ '<output id="photo_' + i +'"></output>';
+			
+			//Appending the formed string
 			$('#photo_layout_main > .' + layout_class + '_' + i ).append(inputAndListener);
 
 			//We make the photo draggable using JQuery UI
@@ -61,9 +66,12 @@ $(function() {
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
 	});
 
-	$( "#upload_btn" ).submit(function( event ) {
-	 	$( "#upload_form" ).submit();
+	//When selecting the individual photo on a layout, we color the border red. We use "on()" since "click()" doesn't work for dinamically created elements.
+	$('body').on('click', 'div.photo', function() {	 
+		$(this).toggleClass("selected").siblings().removeClass('selected');
 	});
+
+	
 });
 
 /* function handleFileSelect(event)
@@ -96,7 +104,7 @@ function handleFileSelect(event) {
 			return function(e) {
 			 	// Render thumbnail.
 			  	var span = document.createElement('span');
-			  	span.innerHTML = ['<img class="photo draggable ui-widget-content" src="', e.target.result,
+			  	span.innerHTML = ['<img class="draggable_photo draggable ui-widget-content" src="', e.target.result,
 			                    '" title="', escape(file.name), '"/>'].join('');
 			   
 			    //Adding the loaded photo

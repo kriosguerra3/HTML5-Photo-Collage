@@ -1,3 +1,6 @@
+body{
+	background-color: #e0d2d9;
+}
 div#header{
 	background-color: #4E89BD;
 	margin: 0;
@@ -48,7 +51,7 @@ div#photo_layout_main > div{
 	overflow: hidden;
 }
 
-.photo {
+.draggable_photo {
 	z-index: 9;
 	height: 100%;
 	margin: 10px 5px 0 0;
@@ -69,6 +72,8 @@ div#photo_layout_main > div{
 div.selected{
 	border: 2px solid #e05158;
 }
+
+
 
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
