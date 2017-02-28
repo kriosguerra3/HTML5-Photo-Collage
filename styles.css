@@ -5,7 +5,7 @@ div#header{
 	background-color: #4E89BD;
 	margin: 0;
 	color: white;
-	height: 100px;
+	height: 50px;
 	padding: 2%;
 }
 
@@ -25,17 +25,19 @@ div#filters_group{
 div.filter_sample{
 	width: 150px;
 	text-align: center;
+	float:left;
+	cursor: pointer;
 }
 
-div.filter_thumbnail{
-	background-color: black;
+div.filter_thumbnail{	
+	background-image: url("sky.jpg");
 	width: 100px;
-	height: 80px;
+	height: 75px;
 	margin: 0px 20px 5px 20px;
 
 }
 div#settings{
-	background-image:"sky.jpg" ;
+	background-color: white;
 	display: table-cell;
 	height: 50vh;
 }

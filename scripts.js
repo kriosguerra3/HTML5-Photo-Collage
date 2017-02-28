@@ -4,7 +4,17 @@ $(function() {
 	if(!(window.File && window.FileReader && window.FileList && window.Blob))
 	{
 		alert('HTML5 file APIs are not fully supported in this browser :/');
-	}	 
+	}
+
+	/// testing purposes: Automated clicks 
+	setTimeout(function(){ $('.lay_21_1').trigger('click'); }, 1000);
+	setTimeout(function(){ $('#next').trigger('click'); }, 1500);
+	setTimeout(function(){ 
+		$('#photo_1').css("background-image","url(sample_1.png)").css("height","300px");
+		$('#photo_2').css("background-image","url(sample_2.png)").css("height","300px");
+	}, 2500);
+	///END OF AUTOMATED CLICKS////
+
 
 	//When clicking the numbered links... 
 	$( ".btn-link" ).click(function() {
@@ -48,9 +58,9 @@ $(function() {
 												+ ' src="close.png"></div>');
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
-			var inputAndListener= '<input type="file" id="files_' + i +'" '
+			var inputAndListener= '<div class="filter"><input type="file" id="files_' + i +'" '
 									+ '	name="files'+ '_' + i + '[] "/>'
-									+ '<output id="photo_' + i +'"></output>';
+									+ '<output id="photo_' + i +'"></output></div>';
 			
 			//Appending the formed string
 			$('#photo_layout_main > .' + layout_class + '_' + i ).append(inputAndListener);
@@ -71,8 +81,19 @@ $(function() {
 		$(this).toggleClass("selected").siblings().removeClass('selected');
 	});
 
+
+	$('.filter_sample').click(function() {
+		//Getting the filtername from the HTML5 data attributes  filter-name 
+		filterName = $(this).data("filter-name");
+		$(".filter").addClass(filterName);	
+	});	
+	
+
+	
 	
 });
+
+
 
 /* function handleFileSelect(event)
 Validates and upload of every photo without the need of a server */
@@ -131,3 +152,5 @@ function deletePhoto(container_id){
 	document.getElementById("files_" + container_id).value = '';
 	document.getElementById("close_" + container_id).style.display = "none";
 }
+
+

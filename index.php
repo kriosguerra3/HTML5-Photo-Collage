@@ -87,11 +87,16 @@
 			<div class="row">
 				<div id = "filters_group" class="col-12">
 					<h5>Filters</h5>
-					<div class ="filter_sample">
+					<div class ="filter_sample" data-filter-name="none">
 						<div class="filter_thumbnail"></div>
 						<span class="filter_name">No filter</span>
 					</div>
 					
+					<div class ="filter_sample" data-filter-name="blackandwhite">
+						<div class="filter_thumbnail blackandwhite" ></div>
+						<span class="filter_name">Black And White</span>
+					</div>
+
 				</div>	
 			</div>
 		</div>
