@@ -59,8 +59,8 @@ $(function() {
 			$( "#photo_" + i ).draggable();
 		};
 
-		$("#layout_group_container").css("display","none");
-		$("#layout_main_container").css("display","block");
+		$("#step_1").css("display","none");
+		$("#step_2").css("display","block");
 
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);

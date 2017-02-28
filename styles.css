@@ -9,11 +9,47 @@ div#header{
 	padding: 2%;
 }
 
+.row{
+	text-align: center;
+}
+
 div#header h1{
 	margin: 0;
 }
 
-div.layout_group,div#layout_main_container{display: none;}
+div#filters_group{
+	background-color: white;
+	height: 150px;
+}
+
+div.filter_sample{
+	width: 150px;
+	text-align: center;
+}
+
+div.filter_thumbnail{
+	background-color: black;
+	width: 100px;
+	height: 80px;
+	margin: 0px 20px 5px 20px;
+
+}
+div#settings{
+	background-image:"sky.jpg" ;
+	display: table-cell;
+	height: 50vh;
+}
+
+
+
+
+
+#layout_main_container{
+	text-align: center;
+}
+
+/*div.layout_group,div#layout_main_container{display: none;}*/
+div.layout_group,div#step_2{display: none;}
 div#group_2{display: block;}
 
 div.button_container{
