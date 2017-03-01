@@ -17,13 +17,12 @@ div#header h1{
 	margin: 0;
 }
 
-div#filters_group{
-	background-color: white;
-	height: 150px;
+div.filters_group{
+	background-color:white;
 }
 
 div.filter_sample{
-	width: 150px;
+	
 	text-align: center;
 	float:left;
 	cursor: pointer;
@@ -31,9 +30,9 @@ div.filter_sample{
 
 div.filter_thumbnail{	
 	background-image: url("sky.jpg");
-	width: 100px;
+	width: 80%;
 	height: 75px;
-	margin: 0px 20px 5px 20px;
+	margin: 0px 20% 5px 20%;
 
 }
 div#settings{
@@ -42,15 +41,10 @@ div#settings{
 	height: 50vh;
 }
 
-
-
-
-
 #layout_main_container{
 	text-align: center;
 }
 
-/*div.layout_group,div#layout_main_container{display: none;}*/
 div.layout_group,div#step_2{display: none;}
 div#group_2{display: block;}
 
@@ -110,7 +104,6 @@ div#photo_layout_main > div{
 div.selected{
 	border: 2px solid #e05158;
 }
-
 
 
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/

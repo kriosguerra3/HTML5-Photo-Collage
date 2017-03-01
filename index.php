@@ -65,12 +65,10 @@
 			</div>
 
 			<div class="button_container">			
-				<button type="button" id="next" class="btn btn-primary">Next</button>	
+				<button type="button" id="next" class="btn btn-primary">Next</button>
 			</div>	
-
 		</div>
 		
-
 		<div id="step_2" >
 			<div class="row">
 				<h3>Step 2: Upload photos and add filters</h3>
@@ -86,104 +84,77 @@
 			</div>
 
 
-			<div class="row">
-				<div id = "filters_group" class="col-12">
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">					
+			<div class="filters_wrapper">
+				<div class="row no-gutters filters_group">
 
-						<!-- Indicators -->
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-						</ol>
-
-						<div class="carousel-inner" role="listbox">
-							<div class="item active">
-								<div class ="filter_sample" data-filter-name="none">
-									<div class="filter_thumbnail"></div>
-									<span class="filter_name">No filter</span>
-								</div>
-								
-								<div class ="filter_sample" data-filter-name="blackandwhite">
-									<div class="filter_thumbnail blackandwhite" ></div>
-									<span class="filter_name">Black And White</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="sepia">
-									<div class="filter_thumbnail sepia" ></div>
-									<span class="filter_name">Sepia</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="sunset">
-									<div class="filter_thumbnail sunset" ></div>
-									<span class="filter_name">Sunset</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="xpro2">
-									<div class="filter_thumbnail xpro2" ></div>
-									<span class="filter_name">Xpro2</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="walden">
-									<div class="filter_thumbnail walden" ></div>
-									<span class="filter_name">Walden</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="toaster">
-									<div class="filter_thumbnail toaster" ></div>
-									<span class="filter_name">Toaster</span>
-								</div>
-							</div>
-							
-							<div class="item">
-								<div class ="filter_sample" data-filter-name="sutro">
-									<div class="filter_thumbnail sutro" ></div>
-									<span class="filter_name">Sutro</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="rise">
-									<div class="filter_thumbnail rise" ></div>
-									<span class="filter_name">Rise</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="lofi">
-									<div class="filter_thumbnail lofi" ></div>
-									<span class="filter_name">Lofi</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="kelvin">
-									<div class="filter_thumbnail kelvin" ></div>
-									<span class="filter_name">Kelvin</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="hudson">
-									<div class="filter_thumbnail hudson" ></div>
-									<span class="filter_name">Hudson</span>
-								</div>
-								
-								<div class ="filter_sample" data-filter-name="brannan">
-									<div class="filter_thumbnail brannan" ></div>
-									<span class="filter_name">Brannan</span>
-								</div>
-
-								<div class ="filter_sample" data-filter-name="nineteen77">
-									<div class="filter_thumbnail nineteen77" ></div>
-									<span class="filter_name">Nineteen77</span>
-								</div>
-							</div>
-						</div>	
-
-						 <!-- Left and right controls -->
-						<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class="sr-only">Previous</span>
-						</a>
-						<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="none">
+						<div class="filter_thumbnail"></div>
+						<span class="filter_name">No filter</span>
 					</div>
-				</div>	
+					
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="blackandwhite">
+						<div class="filter_thumbnail blackandwhite" ></div>
+						<span class="filter_name">Black And White</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sepia">
+						<div class="filter_thumbnail sepia" ></div>
+						<span class="filter_name">Sepia</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sunset">
+						<div class="filter_thumbnail sunset" ></div>
+						<span class="filter_name">Sunset</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="xpro2">
+						<div class="filter_thumbnail xpro2" ></div>
+						<span class="filter_name">Xpro2</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="lofi">
+						<div class="filter_thumbnail lofi" ></div>
+						<span class="filter_name">Lofi</span>
+					</div>
+				</div>
+
+				<div class="row no-gutters filters_group">
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="kelvin">
+						<div class="filter_thumbnail kelvin" ></div>
+						<span class="filter_name">Kelvin</span>
+					</div>	
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="hudson">
+						<div class="filter_thumbnail hudson" ></div>
+						<span class="filter_name">Hudson</span>
+					</div>
+					
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="brannan">
+						<div class="filter_thumbnail brannan" ></div>
+						<span class="filter_name">Brannan</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="nineteen77">
+						<div class="filter_thumbnail nineteen77" ></div>
+						<span class="filter_name">Nineteen77</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="toaster">
+						<div class="filter_thumbnail toaster" ></div>
+						<span class="filter_name">Toaster</span>
+					</div>
+
+					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sutro">
+						<div class="filter_thumbnail sutro" ></div>
+						<span class="filter_name">Sutro</span>
+					</div>
+					
+				</div>
 			</div>
+				
+
+			
 		</div>
 </div>
 <?php include('footer.php'); ?>
