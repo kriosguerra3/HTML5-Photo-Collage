@@ -85,7 +85,15 @@ $(function() {
 	$('.filter_sample').click(function() {
 		//Getting the filtername from the HTML5 data attributes  filter-name 
 		filterName = $(this).data("filter-name");
-		$(".filter").addClass(filterName);	
+		//Remove all classes but "filter"
+		$(".filter").removeClass().addClass("filter");
+		//Adding the single filter
+		if(filterName != 'none'){
+			$(".filter").addClass(filterName);	
+		}
+		
+		
+		
 	});	
 	
 
