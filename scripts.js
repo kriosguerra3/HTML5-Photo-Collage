@@ -1,4 +1,7 @@
 
+//Array with filters name
+var filters = ["none","blackandwhite","sepia", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson","brannan","nineteen77"];
+
 $(function() {
 	// Check for the various File API support.
 	if(!(window.File && window.FileReader && window.FileList && window.Blob))
@@ -69,11 +72,24 @@ $(function() {
 			$( "#photo_" + i ).draggable();
 		};
 
+		//Ocultamos el div del primer paso
 		$("#step_1").css("display","none");
 		$("#step_2").css("display","block");
 
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
+
+		//Dynamically generate the filters samples
+		var filtersHTML = '';
+		//var filters is declared on line 1
+		for (i = 0; i < filters.length; i++) {
+			filter = filters[i];
+		    filtersHTML += '<div class ="filter_sample" data-filter-name="'+filter+'"><div class="filter_thumbnail '+filter+'"></div><span class="filter_name">'+filter+'</span></div>';
+		}
+		//Append the filters
+		$("#filters_wrapper").append(filtersHTML);
+		
+
 	});
 
 	//When selecting the individual photo on a layout, we color the border red. We use "on()" since "click()" doesn't work for dinamically created elements.
@@ -81,7 +97,19 @@ $(function() {
 		$(this).toggleClass("selected").siblings().removeClass('selected');
 	});
 
+	//We do the same for the filters samples
+	$('body').on('click', 'div.filter_sample', function() {	 
+		//Getting the filtername from the HTML5 data attributes  filter-name 
+		filterName = $(this).data("filter-name");
+		//Remove all classes but "filter"
+		$(".filter").removeClass().addClass("filter");
+		//Adding the single filter
+		if(filterName != 'none'){
+			$(".filter").addClass(filterName);	
+		}
+	});
 
+/*
 	$('.filter_sample').click(function() {
 		//Getting the filtername from the HTML5 data attributes  filter-name 
 		filterName = $(this).data("filter-name");
@@ -91,11 +119,8 @@ $(function() {
 		if(filterName != 'none'){
 			$(".filter").addClass(filterName);	
 		}
-		
-		
-		
 	});	
-	
+	*/
 
 	
 	

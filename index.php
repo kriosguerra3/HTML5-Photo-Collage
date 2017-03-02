@@ -84,74 +84,80 @@
 			</div>
 
 
-			<div class="filters_wrapper">
-				<div class="row no-gutters filters_group">
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="none">
+			<div id="filters_wrapper" class="row no-gutters filters_group">
+				<!--
+				<div class ="filter_sample" data-filter-name="none">
 						<div class="filter_thumbnail"></div>
 						<span class="filter_name">No filter</span>
-					</div>
-					
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="blackandwhite">
-						<div class="filter_thumbnail blackandwhite" ></div>
-						<span class="filter_name">Black And White</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sepia">
-						<div class="filter_thumbnail sepia" ></div>
-						<span class="filter_name">Sepia</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sunset">
-						<div class="filter_thumbnail sunset" ></div>
-						<span class="filter_name">Sunset</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="xpro2">
-						<div class="filter_thumbnail xpro2" ></div>
-						<span class="filter_name">Xpro2</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="lofi">
-						<div class="filter_thumbnail lofi" ></div>
-						<span class="filter_name">Lofi</span>
-					</div>
+				</div>
+				
+				<div class ="filter_sample" data-filter-name="blackandwhite">
+					<div class="filter_thumbnail blackandwhite" ></div>
+					<span class="filter_name">Black And White</span>
 				</div>
 
-				<div class="row no-gutters filters_group">
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="kelvin">
-						<div class="filter_thumbnail kelvin" ></div>
-						<span class="filter_name">Kelvin</span>
-					</div>	
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="hudson">
-						<div class="filter_thumbnail hudson" ></div>
-						<span class="filter_name">Hudson</span>
-					</div>
-					
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="brannan">
-						<div class="filter_thumbnail brannan" ></div>
-						<span class="filter_name">Brannan</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="nineteen77">
-						<div class="filter_thumbnail nineteen77" ></div>
-						<span class="filter_name">Nineteen77</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="toaster">
-						<div class="filter_thumbnail toaster" ></div>
-						<span class="filter_name">Toaster</span>
-					</div>
-
-					<div class ="filter_sample col-md-2 col-lg-2" data-filter-name="sutro">
-						<div class="filter_thumbnail sutro" ></div>
-						<span class="filter_name">Sutro</span>
-					</div>
-					
+				<div class ="filter_sample" data-filter-name="sepia">
+					<div class="filter_thumbnail sepia" ></div>
+					<span class="filter_name">Sepia</span>
 				</div>
+
+				<div class ="filter_sample" data-filter-name="sunset">
+					<div class="filter_thumbnail sunset" ></div>
+					<span class="filter_name">Sunset</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="xpro2">
+					<div class="filter_thumbnail xpro2" ></div>
+					<span class="filter_name">Xpro2</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="lofi">
+					<div class="filter_thumbnail lofi" ></div>
+					<span class="filter_name">Lofi</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="walden">
+					<div class="filter_thumbnail walden" ></div>
+					<span class="filter_name">Walden</span>
+				</div>				
+				
+				<div class ="filter_sample" data-filter-name="kelvin">
+					<div class="filter_thumbnail kelvin" ></div>
+					<span class="filter_name">Kelvin</span>
+				</div>	
+
+				<div class ="filter_sample" data-filter-name="hudson">
+					<div class="filter_thumbnail hudson" ></div>
+					<span class="filter_name">Hudson</span>
+				</div>
+				
+				<div class ="filter_sample" data-filter-name="brannan">
+					<div class="filter_thumbnail brannan" ></div>
+					<span class="filter_name">Brannan</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="nineteen77">
+					<div class="filter_thumbnail nineteen77" ></div>
+					<span class="filter_name">Nineteen77</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="toaster">
+					<div class="filter_thumbnail toaster" ></div>
+					<span class="filter_name">Toaster</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="sutro">
+					<div class="filter_thumbnail sutro" ></div>
+					<span class="filter_name">Sutro</span>
+				</div>
+
+				<div class ="filter_sample" data-filter-name="rise">
+					<div class="filter_thumbnail rise" ></div>
+					<span class="filter_name">Rise</span>
+				</div>
+				-->
 			</div>
+
 				
 
 			
