@@ -69,7 +69,7 @@ $(function() {
 			$( "#photo_" + i ).draggable();
 		};
 
-		//Ocultamos el div del primer paso
+		//Hide the div from the forst step
 		$("#step_1").css("display","none");
 		$("#step_2").css("display","block");
 
@@ -79,39 +79,37 @@ $(function() {
 
 		//Dynamically generate the HTML for the filters samples, so it's easily to make changes to it
 
-		var filters = ["none","blackandwhite","sepia", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson","brannan","nineteen77"];
+		var filters = ["none","blackandwhite","nineteen77", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson"];
 		
 		//We use 2 for loops since we want them in 2 rows.
-		var columnsPerRow = 7;		
+		var columnsPerRow = 6;		
 		//We use this counter to keep track of the real number of columns that are displayed so far
 		var columnsCounter = 1;
 
 		//Creating the string that will contain the HTML for the filters samples,
-		var filtersHTML = '';		
+		var filtersHTML = '<div class="row-fluid">';	
+			filtersHTML += '';				
 
 		for (i = 0; i < filters.length; i++) {
 			
 			//If the residue of i divided  by the columns in the row is zero, we open a new div with the bootstrap class "row"
 			if(i%columnsPerRow == 0){				
-				filtersHTML += '<div class="row">';				
+				//filtersHTML += '<div class="row-fluid">';				
 			}						
 			
 			filterName = filters[i];
-		    filtersHTML += '<div class ="filter_sample" data-filter-name="'+filterName+'">'
+		    filtersHTML += '<div class ="filter_sample col-xs-3 col-sm-3 col-md-2 col-lg-2" data-filter-name="'+filterName+'">'
 		    			+		'<div class="filter_thumbnail '+filterName+'"></div>'
 		    			+		'<span class="filter_name">'+filterName+'</span></div>';
 		   	
 		    //If we on the last element of the array, or if we the residue of i divided  by the columns in the row is zero, we close the div 
 
 		    if(i == filters.length -1 || (columnsCounter)%columnsPerRow == 0){
-		    	filtersHTML += '</div>';
+		    	//filtersHTML += '</div>';
 		    }
-
 		    columnsCounter++;
 		}
-		
-		
-
+		filtersHTML += '</div>';	
 		//Append the filters
 		$("#filters_wrapper").append(filtersHTML);
 		

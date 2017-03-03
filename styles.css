@@ -18,25 +18,30 @@ div#header h1{
 }
 
 div.filters_group{
-	background-color:white;
+	background-color:#000;
+	max-height: 320px;
+	padding-top: 15px;
 }
 
 div.filter_sample{
 	text-align: center;
 	float:left;
 	cursor: pointer;
-	width: 14%;
+	/*width: 14%;*/
 }
 
 div.filter_thumbnail{	
 	background-image: url("sky.jpg");
-	width: 65%;
+	/*width: 100%;*/
+	max-width:200px;
     margin: 0 auto;
-	height: 45px;	
+	height: 80px;	
 }
 
 span.filter_name{
 	text-transform:capitalize;
+	color:#fff;
+	font-weight:700;
 }
 
 
@@ -44,10 +49,6 @@ div#settings{
 	background-color: white;
 	display: table-cell;
 	height: 50vh;
-}
-
-.filters_group{	
-	padding:2%;
 }
 
 #layout_main_container{
