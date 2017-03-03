@@ -85,6 +85,7 @@
 
 
 			<div id="filters_wrapper" class="row no-gutters filters_group">
+				
 				<!--
 				<div class ="filter_sample" data-filter-name="none">
 						<div class="filter_thumbnail"></div>

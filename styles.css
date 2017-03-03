@@ -32,7 +32,11 @@ div.filter_thumbnail{
 	background-image: url("sky.jpg");
 	width: 65%;
     margin: 0 auto;
-	height: 90px;	
+	height: 45px;	
+}
+
+span.filter_name{
+	text-transform:capitalize;
 }
 
 

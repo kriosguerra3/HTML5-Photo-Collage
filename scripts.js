@@ -1,7 +1,4 @@
 
-//Array with filters name
-var filters = ["none","blackandwhite","sepia", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson","brannan","nineteen77"];
-
 $(function() {
 	// Check for the various File API support.
 	if(!(window.File && window.FileReader && window.FileList && window.Blob))
@@ -79,13 +76,42 @@ $(function() {
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
 
-		//Dynamically generate the filters samples
-		var filtersHTML = '';
-		//var filters is declared on line 1
+
+		//Dynamically generate the HTML for the filters samples, so it's easily to make changes to it
+
+		var filters = ["none","blackandwhite","sepia", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson","brannan","nineteen77"];
+		
+		//We use 2 for loops since we want them in 2 rows.
+		var columnsPerRow = 7;		
+		//We use this counter to keep track of the real number of columns that are displayed so far
+		var columnsCounter = 1;
+
+		//Creating the string that will contain the HTML for the filters samples,
+		var filtersHTML = '';		
+
 		for (i = 0; i < filters.length; i++) {
-			filter = filters[i];
-		    filtersHTML += '<div class ="filter_sample" data-filter-name="'+filter+'"><div class="filter_thumbnail '+filter+'"></div><span class="filter_name">'+filter+'</span></div>';
+			
+			//If the residue of i divided  by the columns in the row is zero, we open a new div with the bootstrap class "row"
+			if(i%columnsPerRow == 0){				
+				filtersHTML += '<div class="row">';				
+			}						
+			
+			filterName = filters[i];
+		    filtersHTML += '<div class ="filter_sample" data-filter-name="'+filterName+'">'
+		    			+		'<div class="filter_thumbnail '+filterName+'"></div>'
+		    			+		'<span class="filter_name">'+filterName+'</span></div>';
+		   	
+		    //If we on the last element of the array, or if we the residue of i divided  by the columns in the row is zero, we close the div 
+
+		    if(i == filters.length -1 || (columnsCounter)%columnsPerRow == 0){
+		    	filtersHTML += '</div>';
+		    }
+
+		    columnsCounter++;
 		}
+		
+		
+
 		//Append the filters
 		$("#filters_wrapper").append(filtersHTML);
 		
@@ -108,20 +134,6 @@ $(function() {
 			$(".filter").addClass(filterName);	
 		}
 	});
-
-/*
-	$('.filter_sample').click(function() {
-		//Getting the filtername from the HTML5 data attributes  filter-name 
-		filterName = $(this).data("filter-name");
-		//Remove all classes but "filter"
-		$(".filter").removeClass().addClass("filter");
-		//Adding the single filter
-		if(filterName != 'none'){
-			$(".filter").addClass(filterName);	
-		}
-	});	
-	*/
-
 	
 	
 });
