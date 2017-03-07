@@ -1,2 +1,2 @@
 # php-photo-collage
-Photo collage maker written in PHP
+Photo collage maker written in HTML5 and Javascript
