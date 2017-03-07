@@ -72,14 +72,18 @@
 		<div id="step_2" >
 			<div class="row">
 				<h3>Step 2: Upload photos and add filters</h3>
-				<div id = "settings" class="col-md-2 col-lg-2">
+				<!--<div id = "settings" class="col-md-2 col-lg-2">
 					<h5>Options</h5>
 					Collage Size: <input type="text" id "size" name="size" size="4" value="400"> px					
-				</div>
+				</div>-->
 				<div class="col-md-10 col-lg-10">					
 					<div id="layout_main_container">
-						<div id="photo_layout_main"></div>
-					</div>  	
+						<div id="photo_layout_main"></div>	
+						<input type="hidden" id="hdnFiltro" value="NOMBRE FILTRO">					
+					</div> 
+					<div class="button_container">			
+						<button type="button" id="preview" class="btn btn-primary">Preview</button>
+					</div>					
 				</div>				
 			</div>
 

@@ -84,30 +84,30 @@ $(function() {
 		//We use 2 for loops since we want them in 2 rows.
 		var columnsPerRow = 6;		
 		//We use this counter to keep track of the real number of columns that are displayed so far
-		var columnsCounter = 1;
+		//var columnsCounter = 1;
 
 		//Creating the string that will contain the HTML for the filters samples,
-		var filtersHTML = '<div class="row-fluid">';	
-			filtersHTML += '';				
+		var filtersHTML = '';	
+		filtersHTML += '<div class="row-fluid">';				
 
 		for (i = 0; i < filters.length; i++) {
 			
 			//If the residue of i divided  by the columns in the row is zero, we open a new div with the bootstrap class "row"
-			if(i%columnsPerRow == 0){				
+			//(if(i%columnsPerRow == 0){				
 				//filtersHTML += '<div class="row-fluid">';				
-			}						
+			//}						
 			
 			filterName = filters[i];
-		    filtersHTML += '<div class ="filter_sample col-xs-3 col-sm-3 col-md-2 col-lg-2" data-filter-name="'+filterName+'">'
+		    filtersHTML += '<div class ="filter_sample col-xs-4 col-sm-3 col-md-2 col-lg-2" data-filter-name="'+filterName+'">'
 		    			+		'<div class="filter_thumbnail '+filterName+'"></div>'
 		    			+		'<span class="filter_name">'+filterName+'</span></div>';
 		   	
 		    //If we on the last element of the array, or if we the residue of i divided  by the columns in the row is zero, we close the div 
 
-		    if(i == filters.length -1 || (columnsCounter)%columnsPerRow == 0){
+		    //if(i == filters.length -1 || (columnsCounter)%columnsPerRow == 0){
 		    	//filtersHTML += '</div>';
-		    }
-		    columnsCounter++;
+		    //}
+		    //columnsCounter++;
 		}
 		filtersHTML += '</div>';	
 		//Append the filters
@@ -132,6 +132,26 @@ $(function() {
 			$(".filter").addClass(filterName);	
 		}
 	});
+
+
+	var element = $("#photo_layout_main"); 
+	var getCanvas; // global variable
+
+    $("#preview").on('click', function () {
+         html2canvas(element, {
+         onrendered: function (canvas) {
+                $("#layout_main_container").append(canvas);
+                getCanvas = canvas;
+             }
+         });
+    });
+
+
+
+
+
+
+
 	
 	
 });
