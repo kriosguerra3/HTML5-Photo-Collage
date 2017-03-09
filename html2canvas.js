@@ -1013,12 +1013,14 @@
 
             },
             drawImage: function () {
-                console.log("drawImage: function () {");
-                console.log(arguments);
+                console.log("drawImage: function () {" + currentCollageImage +  selectedFilters[currentCollageImage] );
+                //console.log(arguments);
                 storage.push({
                     type: "function",
                     name: "drawImage",
-                    'arguments': arguments
+                    'arguments': arguments,
+                    'img_id':currentCollageImage,
+                    filter : selectedFilters[currentCollageImage]
                 });
             },
             fillText: function () {
@@ -1819,7 +1821,7 @@
         function drawImage (ctx) {       
             console.log("drawImage");
             //console.log(ctx);
-            //ctx.filter = 'blur(5px)';                
+            //ctx.filter = 'blur(5px)' NO SIRVE;                
             ctx.drawImage.apply(ctx, Array.prototype.slice.call(arguments, 1));
             numDraws+=1;
         }
@@ -2087,8 +2089,7 @@
                 backgroundColor = (ignoreElementsRegExp.test(element.nodeName)) ? "#efefef" : getCSS(element, "backgroundColor");
 
 
-            createShape(ctx, borderData.clip);
-
+            createShape(ctx, borderData.clip);            
             ctx.save();
             ctx.clip();
 
@@ -2114,7 +2115,7 @@
                     if ((image = loadImage(element.getAttribute('src')))) {
                         console.log("renderElement");
                         //console.log(element.parentElement);
-                        //ctx.filter = 'blur(5px)';                        
+                        //ctx.filter = 'blur(5px)'NO FUNCIONA;                        
                         renderImage(ctx, element, image, bounds, borders);
                     } else {
                         Util.log("html2canvas: Error loading <img>:" + element.getAttribute('src'));
@@ -2796,8 +2797,7 @@
             return true;
         }
 
-        function renderItem(ctx, item) {
-            console.log("renderItem");
+        function renderItem(ctx, item) {            
             switch(item.type){
                 case "variable":
                     ctx[item.name] = item['arguments'];
@@ -2823,13 +2823,16 @@
                                 
                                 console.log("renderItem");
                                 
+                                console.log(ctx);
+                                console.log(item);
+
                                 
                                 var filterToUse = selectedFilters[currentCollageImage]
-                                console.log("filtro aplicado a foto " + filterToUse);
-                                console.log("foto actual " + currentCollageImage);
-                                console.log("valores del filtro " + filters[filterToUse]);
+                                console.log("filtro aplicado a foto " + item['filter']);
+                                console.log("foto actual " + item['img_id']);
+                                console.log("valores del filtro " +   filters[item['filter']]);
 
-                                ctx.filter =  filters[filterToUse];
+                                ctx.filter =  filters[item['filter']];
                                     
                                 if (!options.taintTest || (options.taintTest && safeImage(item))) {                                     
                                     ctx.drawImage.apply( ctx, item['arguments'] );
@@ -2876,7 +2879,7 @@
                 }
 
                 if (storageContext.ctx.storage) {
-                    storageContext.ctx.storage.forEach(function(item) {
+                    storageContext.ctx.storage.forEach(function(item) {                       
                         renderItem(ctx, item);
                     });
                 }
@@ -2894,8 +2897,8 @@
                     newCanvas.width = Math.ceil(bounds.width);
                     newCanvas.height = Math.ceil(bounds.height);
                     ctx = newCanvas.getContext("2d");
-                    //console.log(2871);
-                    //ctx.filter = 'blur(5px)';
+                    
+                    //ctx.filter = 'blur(5px)' SOLO FUNCIONA UNA VEZ HASTA EL FINAL;
 
                     ctx.drawImage(canvas, bounds.left, bounds.top, bounds.width, bounds.height, 0, 0, bounds.width, bounds.height);
                     canvas = null;
