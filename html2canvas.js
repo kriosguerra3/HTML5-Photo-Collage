@@ -7,6 +7,10 @@
 
 (function(window, document, undefined){
 
+    window.filters={sunset:"sepia(50%)",blackandwhite:"grayscale(100%)" };
+    window.selectedFilters = {};
+    window.currentCollageImage = "";
+
     "use strict";
 
     var _html2canvas = {},
@@ -1009,6 +1013,8 @@
 
             },
             drawImage: function () {
+                console.log("drawImage: function () {");
+                console.log(arguments);
                 storage.push({
                     type: "function",
                     name: "drawImage",
@@ -1052,6 +1058,9 @@
         body.appendChild(hidePseudoElements);
 
         images = images || {};
+        
+        //console.log("images array");
+        //console.log(images);
 
         function documentWidth () {
             return Math.max(
@@ -1327,10 +1336,9 @@
         }
 
         function loadImage (src){
-            var img = images[src];
-
-            console.log(images);
-            console.log("llega aquiii!!" + src);
+            var img = images[src];   
+            //console.log(1334);
+            //console.log(img);         
             return (img && img.succeeded === true) ? img.img : false;
         }
 
@@ -1373,13 +1381,17 @@
             }
         }
 
-        function renderImage(ctx, element, image, bounds, borders) {
+        function renderImage(ctx, element, image, bounds, borders) {       
+            console.log("renderImage");
+            //Current Image
+            currentCollageImage =   element.getAttribute("id");         
+            //Photo id
+            selectedFilters[element.getAttribute("id")] = element.getAttribute("data-filter"); 
 
             var paddingLeft = getCSSInt(element, 'paddingLeft'),
                 paddingTop = getCSSInt(element, 'paddingTop'),
                 paddingRight = getCSSInt(element, 'paddingRight'),
-                paddingBottom = getCSSInt(element, 'paddingBottom');
-
+                paddingBottom = getCSSInt(element, 'paddingBottom');   
             drawImage(
                 ctx,
                 image,
@@ -1390,7 +1402,8 @@
                 bounds.left + paddingLeft + borders[3].width, //dx
                 bounds.top + paddingTop + borders[0].width, // dy
                 bounds.width - (borders[1].width + borders[3].width + paddingLeft + paddingRight), //dw
-                bounds.height - (borders[0].width + borders[2].width + paddingTop + paddingBottom) //dh
+                bounds.height - (borders[0].width + borders[2].width + paddingTop + paddingBottom
+                ) //dh
             );
         }
 
@@ -1803,7 +1816,10 @@
             body.removeChild(valueWrap);
         }
 
-        function drawImage (ctx) {
+        function drawImage (ctx) {       
+            console.log("drawImage");
+            //console.log(ctx);
+            //ctx.filter = 'blur(5px)';                
             ctx.drawImage.apply(ctx, Array.prototype.slice.call(arguments, 1));
             numDraws+=1;
         }
@@ -1941,7 +1957,7 @@
             }
         }
 
-        function renderBackgroundImage(element, bounds, ctx) {
+        function renderBackgroundImage(element, bounds, ctx) {            
             var backgroundImage = getCSS(element, "backgroundImage"),
                 backgroundImages = Util.parseBackgroundImage(backgroundImage),
                 image,
@@ -1961,7 +1977,7 @@
                 image = loadImage(key);
 
                 // TODO add support for background-origin
-                if (image) {
+                if (image) {                   
                     renderBackgroundRepeating(element, bounds, ctx, image, imageIndex);
                 } else {
                     Util.log("html2canvas: Error loading background:", backgroundImage);
@@ -2096,6 +2112,9 @@
             switch(element.nodeName){
                 case "IMG":
                     if ((image = loadImage(element.getAttribute('src')))) {
+                        console.log("renderElement");
+                        //console.log(element.parentElement);
+                        //ctx.filter = 'blur(5px)';                        
                         renderImage(ctx, element, image, bounds, borders);
                     } else {
                         Util.log("html2canvas: Error loading <img>:" + element.getAttribute('src'));
@@ -2620,6 +2639,7 @@
                 "</svg>"
             ].join("");
             try {
+                //ctx.filter = 'blur(5px)';NO SIRVE
                 ctx.drawImage(img, 0, 0);
                 canvas.toDataURL();
             } catch(e) {
@@ -2777,6 +2797,7 @@
         }
 
         function renderItem(ctx, item) {
+            console.log("renderItem");
             switch(item.type){
                 case "variable":
                     ctx[item.name] = item['arguments'];
@@ -2798,13 +2819,25 @@
                             break;
                         case "drawImage":
                             if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {
-                                if (!options.taintTest || (options.taintTest && safeImage(item))) {
+
+                                
+                                console.log("renderItem");
+                                
+                                
+                                var filterToUse = selectedFilters[currentCollageImage]
+                                console.log("filtro aplicado a foto " + filterToUse);
+                                console.log("foto actual " + currentCollageImage);
+                                console.log("valores del filtro " + filters[filterToUse]);
+
+                                ctx.filter =  filters[filterToUse];
+                                    
+                                if (!options.taintTest || (options.taintTest && safeImage(item))) {                                     
                                     ctx.drawImage.apply( ctx, item['arguments'] );
                                 }
                             }
                             break;
-                        default:
-                            ctx[item.name].apply(ctx, item['arguments']);
+                        default:                            
+                            ctx[item.name].apply(ctx, item['arguments']);                            
                     }
                     break;
             }
@@ -2823,9 +2856,7 @@
             fstyle = ctx.fillStyle;
             ctx.fillStyle = (Util.isTransparent(zStack.backgroundColor) && options.background !== undefined) ? options.background : parsedData.backgroundColor;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = fstyle;
-            //ctx.filter = 'blur(5px)';
-            console.log(document.getElementById('hdnFiltro').value);
+            ctx.fillStyle = fstyle;            
 
             queue.forEach(function(storageContext) {
                 // set common settings for canvas
@@ -2863,6 +2894,8 @@
                     newCanvas.width = Math.ceil(bounds.width);
                     newCanvas.height = Math.ceil(bounds.height);
                     ctx = newCanvas.getContext("2d");
+                    //console.log(2871);
+                    //ctx.filter = 'blur(5px)';
 
                     ctx.drawImage(canvas, bounds.left, bounds.top, bounds.width, bounds.height, 0, 0, bounds.width, bounds.height);
                     canvas = null;

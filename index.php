@@ -78,8 +78,7 @@
 				</div>-->
 				<div class="col-md-10 col-lg-10">					
 					<div id="layout_main_container">
-						<div id="photo_layout_main"></div>	
-						<input type="hidden" id="hdnFiltro" value="NOMBRE FILTRO">					
+						<div id="photo_layout_main"></div>											
 					</div> 
 					<div class="button_container">			
 						<button type="button" id="preview" class="btn btn-primary">Preview</button>

@@ -10,8 +10,8 @@ $(function() {
 	setTimeout(function(){ $('.lay_21_1').trigger('click'); }, 1000);
 	setTimeout(function(){ $('#next').trigger('click'); }, 1500);
 	setTimeout(function(){ 
-		$('#photo_1').css("background-image","url(sample_1.png)").css("height","300px");
-		$('#photo_2').css("background-image","url(sample_2.png)").css("height","300px");
+		//$('#output_1').css("background-image","url(sample_1.png)").css("height","300px");
+		//$('#output_2').css("background-image","url(sample_2.png)").css("height","300px");
 	}, 2500);
 	///END OF AUTOMATED CLICKS////
 
@@ -60,13 +60,13 @@ $(function() {
 			//For each div, we append a file type input and an event listener, so we can upload images individually
 			var inputAndListener= '<div class="filter"><input type="file" id="files_' + i +'" '
 									+ '	name="files'+ '_' + i + '[] "/>'
-									+ '<output id="photo_' + i +'"></output></div>';
+									+ '<output id="output_' + i +'"></output></div>';
 			
 			//Appending the formed string
 			$('#photo_layout_main > .' + layout_class + '_' + i ).append(inputAndListener);
 
 			//We make the photo draggable using JQuery UI
-			$( "#photo_" + i ).draggable();
+			$( "#output_" + i ).draggable();
 		};
 
 		//Hide the div from the forst step
@@ -125,11 +125,13 @@ $(function() {
 	$('body').on('click', 'div.filter_sample', function() {	 
 		//Getting the filtername from the HTML5 data attributes  filter-name 
 		filterName = $(this).data("filter-name");
-		//Remove all classes but "filter"
-		$(".filter").removeClass().addClass("filter");
+		//Remove all classes but "filter" from the selected photo
+		$("#photo_layout_main > .selected").find(".filter").removeClass().addClass("filter");
+		$("#photo_layout_main > .selected").find(".draggable_photo").attr("data-filter",filterName);
+		
 		//Adding the single filter
 		if(filterName != 'none'){
-			$(".filter").addClass(filterName);	
+			$("#photo_layout_main > .selected").find(".filter").addClass(filterName);	
 		}
 	});
 
@@ -138,21 +140,16 @@ $(function() {
 	var getCanvas; // global variable
 
     $("#preview").on('click', function () {
+    	$(".close_icon").css("display","none");
          html2canvas(element, {
          onrendered: function (canvas) {
                 $("#layout_main_container").append(canvas);
                 getCanvas = canvas;
+                //display close icons
+                $(".close_icon").css("display","block");
              }
          });
     });
-
-
-
-
-
-
-
-	
 	
 });
 
@@ -180,22 +177,23 @@ function handleFileSelect(event) {
 		}
 
 		//From the clicked input, we form the name of the container we will load the  photo in by replaciong the string "files" with "photo"
-		var container_id = clicked_input.replace(/files/gi, "photo");
+		var container_id = clicked_input.replace(/files/gi, "output");
+		var img_id = clicked_input.replace(/files/gi, "img");
 		var reader = new FileReader();
 
 		// Closure to capture the file information.
 		reader.onload = (function(file) {
 			return function(e) {
 			 	// Render thumbnail.
-			  	var span = document.createElement('span');
-			  	span.innerHTML = ['<img class="draggable_photo draggable ui-widget-content" src="', e.target.result,
+			  	var span = document.createElement('span');			  	
+			  	span.innerHTML = ['<img id="'+img_id+'" data-filter="" class="draggable_photo draggable ui-widget-content" src="', e.target.result,
 			                    '" title="', escape(file.name), '"/>'].join('');
 			   
 			    //Adding the loaded photo
 				document.getElementById(container_id).insertBefore(span, null);
 
 				//Every photo container has a unique close icon assigned which is hidden. We  get the id of it and display it now that we have a photo uploaded.
-				var close_icon_id = container_id.replace(/photo/gi, "close");
+				var close_icon_id = container_id.replace(/output/gi, "close");
 				document.getElementById(close_icon_id).style.display = "block";
 			};
 		})(f);
@@ -209,11 +207,11 @@ function handleFileSelect(event) {
  When clicking the red close icon, it deletes the uploaded photo
  Receives the id of the container to empty */
 function deletePhoto(container_id){	
-	var container = document.getElementById("photo_"+ container_id);
-	container.innerHTML = '';
+	$("#output_"+ container_id).html('');
 	//Restoring the input value to "No file chosen"
-	document.getElementById("files_" + container_id).value = '';
-	document.getElementById("close_" + container_id).style.display = "none";
+	$("#files_" + container_id).val('');
+	$("#close_" + container_id).css("display", "none");
+	$("#output_"+ container_id).parent().removeClass().addClass("filter");
 }
 
 
