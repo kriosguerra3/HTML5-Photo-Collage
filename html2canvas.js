@@ -4,11 +4,12 @@
 
  Released under MIT License
 
-Modified my Kelly Rios for filter support.
+Modified my Kelly Rios for filter support. www.kellyrios.com
  */
 
 (function(window, document, undefined){
 
+    //Added by Krios//
     window.filters={sunset:"sepia(50%)",
                     blackandwhite : "grayscale(100%)",
                     none : "none",
@@ -25,6 +26,7 @@ Modified my Kelly Rios for filter support.
     
     window.selectedFilter = {};
     window.currentCollageImage = "";
+    /////End of lines added by krios/////
 
     "use strict";
 
@@ -1026,10 +1028,11 @@ Modified my Kelly Rios for filter support.
 
             },
             drawImage: function () {
+                //element "filter" added by krios
                 storage.push({
                     type: "function",
                     name: "drawImage",
-                    'arguments': arguments,
+                    'arguments': arguments,                    
                     filter : selectedFilter[currentCollageImage]
                 });
             },
@@ -1389,11 +1392,12 @@ Modified my Kelly Rios for filter support.
         }
 
         function renderImage(ctx, element, image, bounds, borders) {       
+            ////////Lines added by krios/////
             //Current Image
             currentCollageImage =   element.getAttribute("id");         
-            //Photo id
+            //filter selected for individual photo
             selectedFilter[element.getAttribute("id")] = element.getAttribute("data-filter"); 
-
+            /////End of lines added by krios/////
             var paddingLeft = getCSSInt(element, 'paddingLeft'),
                 paddingTop = getCSSInt(element, 'paddingTop'),
                 paddingRight = getCSSInt(element, 'paddingRight'),
@@ -2817,9 +2821,11 @@ Modified my Kelly Rios for filter support.
                             break;
                         case "drawImage":
                             if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {                                
+                                /////Lines added by krios/////
                                 var filterToUse = selectedFilter[currentCollageImage]
-                                ctx.filter =  filters[item['filter']];                                    
-                                if (!options.taintTest || (options.taintTest && safeImage(item))) {                                     
+                                ctx.filter =  filters[item['filter']];
+                                /////End of lines added by krios/////                                    
+                                if (!options.taintTest || (options.taintTest && safeImage(item))) {
                                     ctx.drawImage.apply( ctx, item['arguments'] );
                                 }
                             }
