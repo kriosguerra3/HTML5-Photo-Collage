@@ -3,12 +3,27 @@
  Copyright (c) 2013 Niklas von Hertzen
 
  Released under MIT License
+
+Modified my Kelly Rios for filter support.
  */
 
 (function(window, document, undefined){
 
-    window.filters={sunset:"sepia(50%)",blackandwhite:"grayscale(100%)" };
-    window.selectedFilters = {};
+    window.filters={sunset:"sepia(50%)",
+                    blackandwhite : "grayscale(100%)",
+                    none : "none",
+                    xpro2 : "contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg)",
+                    walden : "sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5)",
+                    toaster : "sepia(0.4) saturate(2.5) hue-rotate(-30deg) contrast(0.67)",
+                    sutro : "brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg)",
+                    rise : "saturate(1.4) sepia(0.25) hue-rotate(-15deg) contrast(0.8) brightness(1.1)", 
+                    lofi : "contrast(1.4) brightness(0.9) sepia(0.05)",
+                    kelvin : "sepia(0.4) saturate(2.4) brightness(1.3) contrast(1)",
+                    hudson : "contrast(1.2) brightness(0.9) hue-rotate(-10deg)",
+                    brannan : "sepia(0.5) contrast(1.4)",
+                    nineteen77 : "sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8)"};  
+    
+    window.selectedFilter = {};
     window.currentCollageImage = "";
 
     "use strict";
@@ -259,8 +274,6 @@
     }
 
     _html2canvas.Util.getCSS = function (element, attribute, index) {
-        //console.log(element);
-        //console.log(attribute + " " +  index);
 
         if (previousElement !== element) {
             computedCSS = document.defaultView.getComputedStyle(element, null);
@@ -1013,14 +1026,11 @@
 
             },
             drawImage: function () {
-                console.log("drawImage: function () {" + currentCollageImage +  selectedFilters[currentCollageImage] );
-                //console.log(arguments);
                 storage.push({
                     type: "function",
                     name: "drawImage",
                     'arguments': arguments,
-                    'img_id':currentCollageImage,
-                    filter : selectedFilters[currentCollageImage]
+                    filter : selectedFilter[currentCollageImage]
                 });
             },
             fillText: function () {
@@ -1061,9 +1071,6 @@
 
         images = images || {};
         
-        //console.log("images array");
-        //console.log(images);
-
         function documentWidth () {
             return Math.max(
                 Math.max(doc.body.scrollWidth, doc.documentElement.scrollWidth),
@@ -1338,9 +1345,7 @@
         }
 
         function loadImage (src){
-            var img = images[src];   
-            //console.log(1334);
-            //console.log(img);         
+            var img = images[src];         
             return (img && img.succeeded === true) ? img.img : false;
         }
 
@@ -1384,11 +1389,10 @@
         }
 
         function renderImage(ctx, element, image, bounds, borders) {       
-            console.log("renderImage");
             //Current Image
             currentCollageImage =   element.getAttribute("id");         
             //Photo id
-            selectedFilters[element.getAttribute("id")] = element.getAttribute("data-filter"); 
+            selectedFilter[element.getAttribute("id")] = element.getAttribute("data-filter"); 
 
             var paddingLeft = getCSSInt(element, 'paddingLeft'),
                 paddingTop = getCSSInt(element, 'paddingTop'),
@@ -1818,10 +1822,7 @@
             body.removeChild(valueWrap);
         }
 
-        function drawImage (ctx) {       
-            console.log("drawImage");
-            //console.log(ctx);
-            //ctx.filter = 'blur(5px)' NO SIRVE;                
+        function drawImage (ctx) {            
             ctx.drawImage.apply(ctx, Array.prototype.slice.call(arguments, 1));
             numDraws+=1;
         }
@@ -2113,9 +2114,6 @@
             switch(element.nodeName){
                 case "IMG":
                     if ((image = loadImage(element.getAttribute('src')))) {
-                        console.log("renderElement");
-                        //console.log(element.parentElement);
-                        //ctx.filter = 'blur(5px)'NO FUNCIONA;                        
                         renderImage(ctx, element, image, bounds, borders);
                     } else {
                         Util.log("html2canvas: Error loading <img>:" + element.getAttribute('src'));
@@ -2818,22 +2816,9 @@
                             createShape(ctx, item['arguments']);
                             break;
                         case "drawImage":
-                            if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {
-
-                                
-                                console.log("renderItem");
-                                
-                                console.log(ctx);
-                                console.log(item);
-
-                                
-                                var filterToUse = selectedFilters[currentCollageImage]
-                                console.log("filtro aplicado a foto " + item['filter']);
-                                console.log("foto actual " + item['img_id']);
-                                console.log("valores del filtro " +   filters[item['filter']]);
-
-                                ctx.filter =  filters[item['filter']];
-                                    
+                            if (item['arguments'][8] > 0 && item['arguments'][7] > 0) {                                
+                                var filterToUse = selectedFilter[currentCollageImage]
+                                ctx.filter =  filters[item['filter']];                                    
                                 if (!options.taintTest || (options.taintTest && safeImage(item))) {                                     
                                     ctx.drawImage.apply( ctx, item['arguments'] );
                                 }
