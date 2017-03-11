@@ -849,7 +849,7 @@ Modified my Kelly Rios for filter support. www.kellyrios.com
                 gradient, grad;
 
             canvas.width = bounds.width;
-            canvas.height = bounds.height;
+            canvas.height = bounds.height;            
 
             // TODO: add support for multi defined background gradients
             gradient = _html2canvas.Generate.parseGradient(src, bounds);
@@ -2888,6 +2888,8 @@ Modified my Kelly Rios for filter support. www.kellyrios.com
                     newCanvas.width = Math.ceil(bounds.width);
                     newCanvas.height = Math.ceil(bounds.height);
                     ctx = newCanvas.getContext("2d");
+
+                    newCanvas.id = 'mainCanvas';
                     
                     //ctx.filter = 'blur(5px)' SOLO FUNCIONA UNA VEZ HASTA EL FINAL;
 

@@ -13,18 +13,25 @@
 	</head>
 	<body>
 		<div id ="header">
-			<h1>HTML5 Photo Collage</h1>
+			
+			
+			<h1>HTML5 Photo Collage <span id="camera_icon" class="glyphicon glyphicon-camera"></span>	</h1>	
 		</div>
 		<div class="container-fluid">
 
 			<div id="step_1" class="row">
-				<h3>Step 1: Select a Layout</h3>
+				
+				<div class = "top_container">
+					<h3>Step 1: Select a Layout</h3>					
+				</div>
 				<div id="layout_group_container" class="col">
 					<!-- 2 photos-->
 
 					<? for ($i=2; $i <= 8 ; $i++) { ?>
 						<button type="button" id="link_group_<? echo $i ?>" class="btn btn-lg btn-link" ><? echo $i ?></button>
 					<? } ?>
+					
+					<input type="hidden" id="hdn_photo_num" value="">	
 					<div id= "group_2" class="layout_group">
 						
 						<div class="lay_21 photo_layout_example">						
@@ -81,28 +88,41 @@
 				</div>
 
 				<div class="button_container">			
-					<button type="button" id="next" class="btn btn-primary">Next</button>
+					<button type="button" id="next" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>   Next  </button>
 				</div>	
 			</div>
 			
 			<div id="step_2" >
 				<div class="row">
-					<h3>Step 2: Upload photos and add filters</h3>
-					<!--<div id = "settings" class="col-md-2 col-lg-2">
-						<h5>Options</h5>
-						Collage Size: <input type="text" id "size" name="size" size="4" value="400"> px					
-					</div>-->
-					<div class="col-md-10 col-lg-10">					
+					<div class = "top_container">
+						<h3>Step 2: Upload photos and add filters</h3>
+						
+					</div>	
+
+					<div class="col-md-12 col-lg-12">					
 						<div id="layout_main_container">
-							<div id="photo_layout_main"></div>											
-						</div> 
+							<div id="photo_layout_main" ></div>
+						</div>
 						<div class="button_container">			
-							<button type="button" id="preview" class="btn btn-primary">Preview</button>
-						</div>					
+							<button type="button" id="previous" class="btn btn-primary">
+								<span class="glyphicon glyphicon-arrow-left"></span>  Previous
+							</button>		
+
+							<button type="button" id="download" class="btn btn-primary">
+								<span class="glyphicon glyphicon-download-alt"></span>  Download
+							</button>			
+						</div>
 					</div>				
 				</div>
 				<div id="filters_wrapper" class="row no-gutters filters_group"></div>
 			</div>
+
+			<div id="step_3" title="Download">
+				<div id="canvas_area"></div>
+			</div>
+
+			
+
 		</div>
 		<script src="//code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

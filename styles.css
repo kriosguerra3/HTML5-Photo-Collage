@@ -1,12 +1,14 @@
 body{
-	background-color: #e0d2d9;
+	background-image: url('img/swirl.png');
+	/*background-color:#E2E0E5;	*/
 }
 div#header{
-	background-color: #4E89BD;
 	margin: 0;
 	color: white;
-	height: 50px;
+	height: 80px;
 	padding: 2%;
+	/*background-image: url('img/blue_1.png');	*/
+	background-color:#005E9D;
 }
 
 .row{
@@ -16,11 +18,14 @@ div#header{
 div#header h1{
 	margin: 0;
 }
+span#camera_icon{
+	font-size: 30px;
+}
 
 div.filters_group{
-	background-color:#000;
 	max-height: 420px;
 	padding-top: 15px;
+	background-image: url('img/ep_naturalblack.png');
 }
 
 div.filter_sample{
@@ -31,7 +36,7 @@ div.filter_sample{
 }
 
 div.filter_thumbnail{	
-	background-image: url("sky.jpg");
+	background-image: url("img/sky.jpg");
 	/*width: 100%;*/
 	max-width:200px;
     margin: 0 auto;
@@ -55,14 +60,22 @@ div#settings{
 	text-align: center;
 }
 
-div.layout_group,div#step_2{display: none;}
-div#group_2{display: block;}
+.top_container{
+	padding: 0px 10% 0px 10%;
+	margin:5px;
+}
 
 div.button_container{
 	width: 80%;
-	margin:5% 10% 5% 10%;
-	text-align: right;
+	margin:0% 10% 5% 10%;
+	text-align: center;
 }
+
+#download{visibility:hidden;}
+div.layout_group,div#step_2{display: none;}
+div#group_2{display: block;}
+
+div#step_3{width: 100%;}
 
 div.photo_layout_example{
 	height: 150px;
@@ -72,10 +85,11 @@ div.photo_layout_example{
 	margin: 2%;
 	padding: 1%;
 	cursor: pointer;
+	border: #D8D8D8 1px solid;
 }
 
 div.photo_layout_example > div{
-	background-color: #D090D7;
+	background-color: #FFE560;
 }
 
 div#photo_layout_main{
@@ -83,12 +97,14 @@ div#photo_layout_main{
 	width: 400px;
 	background-color: #fff;
 	display: inline-block;
-	margin: 2%;
-	padding: 1%;	
+	margin: 15px;
+	padding: 15px;
+	border: #D8D8D8 1px solid;
+
 }
 
-div#photo_layout_main > div{
-	background-color: #D090D7;
+.photo{
+	background-color: #FFFBD0;
 	z-index: 10;
 	overflow: hidden;
 }

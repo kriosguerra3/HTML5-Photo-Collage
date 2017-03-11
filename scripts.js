@@ -7,18 +7,19 @@ $(function() {
 	}
 
 	/// testing purposes: Automated clicks 
-	setTimeout(function(){ $('.lay_21_1').trigger('click'); }, 1000);
-	setTimeout(function(){ $('#next').trigger('click'); }, 1500);
-	setTimeout(function(){ 
+	//setTimeout(function(){ $('.lay_21_1').trigger('click'); }, 1000);
+	//setTimeout(function(){ $('#next').trigger('click'); }, 1500);
+	//setTimeout(function(){ 
 		//$('#output_1').css("background-image","url(sample_1.png)").css("height","300px");
-		//$('#output_2').css("background-image","url(sample_2.png)").css("height","300px");
-	}, 2500);
+		//$('#output_2').css("background-image","url(sample_2.png)").css("height","300px");}, 2500);
 	///END OF AUTOMATED CLICKS////
 
 
 	//When clicking the numbered links... 
 	$( ".btn-link" ).click(function() {
 
+		$('#hdn_photo_num').val($(this).text());
+		
 		///ADD VALIDATION IN CASE NO ONE IS SELECTED
 
 		//...we remove previously selected layouts
@@ -55,7 +56,7 @@ $(function() {
 			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +' photo">'
 												+ '<img id = "close_'+ i +'"'
 												+ ' class="close_icon" onClick="deletePhoto(' + i + ')"'
-												+ ' src="close.png"></div>');
+												+ ' src="img/close.png"></div>');
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
 			var inputAndListener= '<div class="filter"><input type="file" id="files_' + i +'" '
@@ -67,11 +68,21 @@ $(function() {
 
 			//We make the photo draggable using JQuery UI
 			$( "#output_" + i ).draggable();
+
 		};
+		//We make the photo draggable using JQuery UI
+		$(".photo").resizable({
+	      containment: "#photo_layout_main"
+	    });
+		
+		$(".photo").draggable({ containment: "#photo_layout_main", scroll: false });
+
+		$("#photo_layout_main").resizable();
 
 		//Hide the div from the forst step
 		$("#step_1").css("display","none");
 		$("#step_2").css("display","block");
+		$("#download").css("visibility","visible");
 
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
@@ -112,8 +123,15 @@ $(function() {
 		filtersHTML += '</div>';	
 		//Append the filters
 		$("#filters_wrapper").append(filtersHTML);
-		
+	});
 
+	$( "#previous" ).click(function() {
+		//Hide the div from the first step
+		$("#step_1").css("display","block");
+		$("#step_2").css("display","none");
+		$("#photo_layout_main").html("");
+		$("#filters_wrapper").html("");
+		
 	});
 
 	//When selecting the individual photo on a layout, we color the border red. We use "on()" since "click()" doesn't work for dinamically created elements.
@@ -139,17 +157,35 @@ $(function() {
 	var element = $("#photo_layout_main"); 
 	var getCanvas; // global variable
 
-    $("#preview").on('click', function () {
+    $("#download").on('click', function () {
     	$(".close_icon").css("display","none");
          html2canvas(element, {
          onrendered: function (canvas) {
-                $("#layout_main_container").append(canvas);
+                $("#canvas_area").html('').append(canvas);
                 getCanvas = canvas;
                 //display close icons
                 $(".close_icon").css("display","block");
+                $( "#step_3" ).dialog( "open" );               
+				
              }
          });
     });
+   
+    $("#step_3").dialog({
+		
+		width: $(window).width() - 100,
+		autoOpen: false,
+		show: {
+			effect: "fadeIn",
+			duration: 500
+		},
+		hide: {
+			effect: "fadeOut",
+			duration: 500
+		}
+
+	});
+    
 	
 });
 
