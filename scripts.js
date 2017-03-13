@@ -14,13 +14,34 @@ $(function() {
 		//$('#output_2').css("background-image","url(sample_2.png)").css("height","300px");}, 2500);
 	///END OF AUTOMATED CLICKS////
 
+	//Generating the sample layouts
+	var layoutsHTML = '';
+	
+	//Group of layouts
+	for (var i = 2 ; i <= 8; i++) {
+		//For 2 photos only 2 layouts available. For the rest, 6 layouts are available
+		var total_layouts = i == 2 ? 2 : 6;
+		layoutsHTML += '<div id= "group_'+ i +'" class="layout_group" >';
+		//Individual Layout
+		for (var j = 1 ; j <= total_layouts; j++) {
+			layoutsHTML += '<div class="lay_' + i + j + ' photo_layout_example">';
+			//Individual Photos inside layout
+			for (var k = 1 ; k <= i; k++) {
+				layoutsHTML +='<div class="lay_'+ i+ j + '_' + k + '"></div>';
+			}
+			layoutsHTML += '</div>';			
+		};	
+		layoutsHTML += '</div>';
+	}		
+	$('#layout_group_container').append(layoutsHTML);
+	//End of generating the sample layouts
+
 
 	//When clicking the numbered links... 
 	$( ".btn-link" ).click(function() {
-
-		$('#hdn_photo_num').val($(this).text());
-		
+		$('#hdn_photo_num').val($(this).text());		
 		///ADD VALIDATION IN CASE NO ONE IS SELECTED
+
 
 		//...we remove previously selected layouts
 		$(".photo_layout_example").removeClass('selected');
@@ -39,8 +60,12 @@ $(function() {
 		$(this).toggleClass("selected").siblings().removeClass('selected');
 	});
 
+	$('.total_photos').click(function() {	
+		var total_photos= $(this).text();
+	});	
+
 	//When clicking the next button...
-	$( "#next" ).click(function() {
+	$("#next").click(function() {
 
 		//...we get the classes from the selected layout example.The class we need to get the layout is the first one of the list (with format "lay_##"). We use the split method to get it.		
 		classes_array = $('.selected').attr('class').split(" ");
@@ -101,24 +126,11 @@ $(function() {
 		var filtersHTML = '';	
 		filtersHTML += '<div class="row-fluid">';				
 
-		for (i = 0; i < filters.length; i++) {
-			
-			//If the residue of i divided  by the columns in the row is zero, we open a new div with the bootstrap class "row"
-			//(if(i%columnsPerRow == 0){				
-				//filtersHTML += '<div class="row-fluid">';				
-			//}						
-			
+		for (i = 0; i < filters.length; i++) {						
 			filterName = filters[i];
 		    filtersHTML += '<div class ="filter_sample col-xs-4 col-sm-3 col-md-2 col-lg-2" data-filter-name="'+filterName+'">'
-		    			+		'<div class="filter_thumbnail '+filterName+'"></div>'
-		    			+		'<span class="filter_name">'+filterName+'</span></div>';
-		   	
-		    //If we on the last element of the array, or if we the residue of i divided  by the columns in the row is zero, we close the div 
-
-		    //if(i == filters.length -1 || (columnsCounter)%columnsPerRow == 0){
-		    	//filtersHTML += '</div>';
-		    //}
-		    //columnsCounter++;
+		    			+  '<div class="filter_thumbnail '+filterName+'"></div>'
+		    			+  '<span class="filter_name">'+filterName+'</span></div>';
 		}
 		filtersHTML += '</div>';	
 		//Append the filters
