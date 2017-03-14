@@ -15,8 +15,7 @@ $(function() {
 	///END OF AUTOMATED CLICKS////
 
 	//Generating the sample layouts
-	var layoutsHTML = '';
-	
+	var layoutsHTML = '';	
 	//Group of layouts
 	for (var i = 2 ; i <= 8; i++) {
 		//For 2 photos only 2 layouts available. For the rest, 6 layouts are available
@@ -177,14 +176,12 @@ $(function() {
                 getCanvas = canvas;
                 //display close icons
                 $(".close_icon").css("display","block");
-                $( "#step_3" ).dialog( "open" );               
-				
+                $( "#step_3" ).dialog( "open" );			
              }
          });
     });
    
-    $("#step_3").dialog({
-		
+    $("#step_3").dialog({		
 		width: $(window).width() - 100,
 		autoOpen: false,
 		show: {
@@ -195,12 +192,8 @@ $(function() {
 			effect: "fadeOut",
 			duration: 500
 		}
-
-	});
-    
-	
+	});    	
 });
-
 
 
 /* function handleFileSelect(event)
