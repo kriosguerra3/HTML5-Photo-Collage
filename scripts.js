@@ -18,8 +18,17 @@ $(function() {
 	var layoutsHTML = '';	
 	//Group of layouts
 	for (var i = 2 ; i <= 8; i++) {
-		//For 2 photos only 2 layouts available. For the rest, 6 layouts are available
-		var total_layouts = i == 2 ? 2 : 6;
+		
+		//Dependng of the number of photos, the available layouts changes.
+		var total_layouts = 0;
+		switch(i) {
+		    case 2: total_layouts = 2; break;
+		    case 3: case 4: total_layouts = 6; break;
+		    case 5: total_layouts = 7; break;
+		    case 6: total_layouts = 4; break; 
+		    case 7:total_layouts = 4;
+		} 
+
 		layoutsHTML += '<div id= "group_'+ i +'" class="layout_group" >';
 		//Individual Layout
 		for (var j = 1 ; j <= total_layouts; j++) {

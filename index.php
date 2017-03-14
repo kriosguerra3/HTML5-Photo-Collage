@@ -28,7 +28,7 @@
 				<div id="layout_group_container" class="col">
 					<!-- 2 photos-->
 
-					<? for ($i=2; $i <= 8 ; $i++) { ?>
+					<? for ($i=2; $i <= 7 ; $i++) { ?>
 						<button type="button" id="link_group_<? echo $i ?>" class="total_photos btn btn-lg btn-link" ><? echo $i ?></button>
 					<? } ?>
 					<input type="hidden" id="hdn_photo_num" value="">
@@ -52,11 +52,13 @@
 						</div>
 						<div class="button_container">			
 							<button type="button" id="previous" class="btn btn-primary">
-								<span class="glyphicon glyphicon-arrow-left"></span>  Previous
+								<span class="glyphicon glyphicon-arrow-left"></span>
+								Previous								
 							</button>		
 
 							<button type="button" id="download" class="btn btn-primary">
-								<span class="glyphicon glyphicon-download-alt"></span>  Download
+								Download
+								<span class="glyphicon glyphicon-download-alt"></span>
 							</button>			
 						</div>
 					</div>				

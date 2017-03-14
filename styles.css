@@ -1,13 +1,11 @@
 body{
-	background-image: url('img/swirl.png');
-	/*background-color:#E2E0E5;	*/
+	background-image: url('img/gray_jean.png');
 }
 div#header{
 	margin: 0;
 	color: white;
 	height: 80px;
 	padding: 2%;
-	/*background-image: url('img/blue_1.png');	*/
 	background-color:#005E9D;
 }
 
@@ -32,12 +30,10 @@ div.filter_sample{
 	text-align: center;
 	float:left;
 	cursor: pointer;
-	/*width: 14%;*/
 }
 
 div.filter_thumbnail{	
 	background-image: url("img/sky.jpg");
-	/*width: 100%;*/
 	max-width:200px;
     margin: 0 auto;
 	height: 80px;	
@@ -79,7 +75,7 @@ div#step_3{width: 100%;}
 
 div.photo_layout_example{
 	height: 150px;
-	width: 150px;
+	width: 200px;
 	background-color: #fff;
 	display: inline-block;
 	margin: 2%;
@@ -94,13 +90,12 @@ div.photo_layout_example > div{
 
 div#photo_layout_main{
 	height: 400px;
-	width: 400px;
+	width: 600px;
 	background-color: #fff;
 	display: inline-block;
 	margin: 15px;
 	padding: 15px;
 	border: #D8D8D8 1px solid;
-
 }
 
 .photo{
