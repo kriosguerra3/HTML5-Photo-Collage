@@ -14,23 +14,25 @@
 	</head>
 	<body>
 		<div id ="header">
-			
-			
-			<h1>HTML5 Photo Collage <span id="camera_icon" class="glyphicon glyphicon-camera"></span>	</h1>	
+			<h1 class="title">HTML5 Photo Collage </h1>	
 		</div>
 		<div class="container-fluid">
-
-			<div id="step_1" class="row">
-				
-				<div class = "top_container">
-					<h3>Step 1: Select a Layout</h3>					
+			<div id="screen_1" class="row">
+				<div class = "instructions_container">
+					<div class="instruction_num">1</div> 
+					<p class="instructions_text">Select the number of photos to add</p>
 				</div>
-				<div id="layout_group_container" class="col">
-					<!-- 2 photos-->
-
+				<div id="total_photos_container">
 					<? for ($i=2; $i <= 7 ; $i++) { ?>
 						<button type="button" id="link_group_<? echo $i ?>" class="total_photos btn btn-lg btn-link" ><? echo $i ?></button>
 					<? } ?>
+				</div>
+				<div class = "instructions_container">
+					<div class="instruction_num">2</div> 
+					<p class="instructions_text">Select a Layout</p>	
+				</div>
+				<div id="layout_group_container" class="col">
+					<!-- 2 photos-->
 					<input type="hidden" id="hdn_photo_num" value="">
 				</div>
 
@@ -39,13 +41,12 @@
 				</div>	
 			</div>
 			
-			<div id="step_2" >
+			<div id="screen_2" >
 				<div class="row">
-					<div class = "top_container">
-						<h3>Step 2: Upload photos and add filters</h3>
-						
-					</div>	
-
+					<div class = "instructions_container">
+						<div class="instruction_num">3</div> 
+						<p class="instructions_text">Upload photos and add filters</p>
+					</div>
 					<div class="col-md-12 col-lg-12">					
 						<div id="layout_main_container">
 							<div id="photo_layout_main" ></div>
@@ -66,13 +67,16 @@
 				<div id="filters_wrapper" class="row no-gutters filters_group"></div>
 			</div>
 
-			<div id="step_3" title="Download">
+			<div id="screen_3" title="Download">
 				<div id="canvas_area"></div>
 			</div>
 
 		</div>
-		<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 		<script src="html2canvas.js"></script>
 		<script src="scripts.js"></script>
 	</body>

@@ -33,6 +33,7 @@ $(function() {
 		//Individual Layout
 		for (var j = 1 ; j <= total_layouts; j++) {
 			layoutsHTML += '<div class="lay_' + i + j + ' photo_layout_example">';
+			layoutsHTML += '<div class="select_layout"><span class="select_text">Select</span></div>';
 			//Individual Photos inside layout
 			for (var k = 1 ; k <= i; k++) {
 				layoutsHTML +='<div class="lay_'+ i+ j + '_' + k + '"></div>';
@@ -44,6 +45,10 @@ $(function() {
 	$('#layout_group_container').append(layoutsHTML);
 	//End of generating the sample layouts
 
+	$(".photo_layout_example").hover(
+	  function() { $(this).children(".select_layout").show(); },
+	  function() { $(this).children(".select_layout").hide(); }
+	);
 
 	//When clicking the numbered links... 
 	$( ".btn-link" ).click(function() {
@@ -84,7 +89,7 @@ $(function() {
 		//We get the number of photos of the layout so we can dinamically build it on the next step.
 		total_photos = layout_class.charAt(4);
 		
-		//We append to the big layout we will be building our collage on the divs and classes from the selected layout. We add also the additional class "photo"
+		//We append to the big layout we will be building our collage on the divs and classes from the selected layout.
 		for (var i = 1; i <= total_photos; i++) {
 			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +' photo">'
 												+ '<img id = "close_'+ i +'"'
@@ -113,8 +118,8 @@ $(function() {
 		$("#photo_layout_main").resizable();
 
 		//Hide the div from the forst step
-		$("#step_1").css("display","none");
-		$("#step_2").css("display","block");
+		$("#screen_1").css("display","none");
+		$("#screen_2").css("display","block");
 		$("#download").css("visibility","visible");
 
 		//Adding the listener for when we upload a photo
@@ -147,8 +152,8 @@ $(function() {
 
 	$( "#previous" ).click(function() {
 		//Hide the div from the first step
-		$("#step_1").css("display","block");
-		$("#step_2").css("display","none");
+		$("#screen_1").css("display","block");
+		$("#screen_2").css("display","none");
 		$("#photo_layout_main").html("");
 		$("#filters_wrapper").html("");
 		
@@ -178,19 +183,21 @@ $(function() {
 	var getCanvas; // global variable
 
     $("#download").on('click', function () {
+    	//Hiding the close icons and red border ("selected"class)from photos
     	$(".close_icon").css("display","none");
+    	$("#photo_layout_main").find(".photo").removeClass("selected");
          html2canvas(element, {
          onrendered: function (canvas) {
                 $("#canvas_area").html('').append(canvas);
                 getCanvas = canvas;
                 //display close icons
                 $(".close_icon").css("display","block");
-                $( "#step_3" ).dialog( "open" );			
+                $("#screen_3").dialog("open");			
              }
          });
     });
    
-    $("#step_3").dialog({		
+    $("#screen_3").dialog({		
 		width: $(window).width() - 100,
 		autoOpen: false,
 		show: {

@@ -9,6 +9,49 @@ div#header{
 	background-color:#005E9D;
 }
 
+
+h1.title{
+	color:#fff;
+	font-weight:300;
+}
+
+p.instructions_text{
+	font-weight: 300;
+	font-size: 30px;
+	float: left;
+	color: #005E9D;;
+}
+
+div.instruction_num{
+	border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    margin-right: 20px;
+    background: #F53FC7;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    float: left;
+}
+
+#total_photos_container{
+	clear: both;
+	width: 80%;
+	margin: 0% 10% 0% 10%;
+}
+
+#layout_group_container{
+	clear: both;
+}
+
+.instructions_container{
+	padding: 0px 10% 0px 10%;
+	width: 80%;
+	margin: 65px 10% 50px 10%;
+	text-align: left;
+}
+
 .row{
 	text-align: center;
 }
@@ -45,7 +88,6 @@ span.filter_name{
 	font-weight:700;
 }
 
-
 div#settings{
 	background-color: white;
 	display: table-cell;
@@ -56,11 +98,6 @@ div#settings{
 	text-align: center;
 }
 
-.top_container{
-	padding: 0px 10% 0px 10%;
-	margin:5px;
-}
-
 div.button_container{
 	width: 80%;
 	margin:0% 10% 5% 10%;
@@ -68,10 +105,10 @@ div.button_container{
 }
 
 #download{visibility:hidden;}
-div.layout_group,div#step_2{display: none;}
+div.layout_group,div#screen_2{display: none;}
 div#group_2{display: block;}
 
-div#step_3{width: 100%;}
+div#screen_3{width: 100%;}
 
 div.photo_layout_example{
 	height: 150px;
@@ -82,10 +119,28 @@ div.photo_layout_example{
 	padding: 1%;
 	cursor: pointer;
 	border: #D8D8D8 1px solid;
+	position: relative;	
 }
 
-div.photo_layout_example > div{
-	background-color: #E5CE57;
+span.select_text{
+	font-size: 18px;
+	color: #F53FC7;
+	font-weight: 400;
+}
+
+div.select_layout{
+	position: absolute;
+	width: 80px;
+	height: 40px;
+	border: 1px solid #F53FC7;
+	margin: 45px 0px 0px 52px;
+	padding-top:5px;
+	border-radius: 8px; 
+	display: none;
+}
+
+div.photo_layout_example > div:not(.select_layout){
+	background-color: #FFFC65;
 }
 
 div#photo_layout_main{
@@ -126,6 +181,11 @@ div.selected{
 	border: 2px solid #e05158;
 }
 
+#screen_3{
+	width: 80%;
+	margin: 2% 10% 1% 10%;
+
+}
 
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
