@@ -23,8 +23,14 @@
 					<p class="instructions_text">Select the number of photos to add</p>
 				</div>
 				<div id="total_photos_container">
-					<? for ($i=2; $i <= 7 ; $i++) { ?>
-						<button type="button" id="link_group_<? echo $i ?>" class="total_photos btn btn-lg btn-link" ><? echo $i ?></button>
+					<? 
+					for ($i=2; $i <= 7 ; $i++) { 
+						//2 photos is selected by default. We add a CSS class to color it
+						$i == 2 ? $selected ='photos_selected' : $selected =''; 
+					?>
+						<div id="link_group_<? echo $i ?>" class="total_photos <? echo $selected?>">
+							<a href="#"><? echo $i ?></a>
+						</div>
 					<? } ?>
 				</div>
 				<div class = "instructions_container">
@@ -32,13 +38,7 @@
 					<p class="instructions_text">Select a Layout</p>	
 				</div>
 				<div id="layout_group_container" class="col">
-					<!-- 2 photos-->
-					<input type="hidden" id="hdn_photo_num" value="">
-				</div>
-
-				<div class="button_container">			
-					<button type="button" id="next" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span>   Next  </button>
-				</div>	
+				</div>				
 			</div>
 			
 			<div id="screen_2" >
@@ -70,7 +70,6 @@
 			<div id="screen_3" title="Download">
 				<div id="canvas_area"></div>
 			</div>
-
 		</div>
 		<script
   src="https://code.jquery.com/jquery-3.1.1.min.js"

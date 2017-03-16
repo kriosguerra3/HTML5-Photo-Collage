@@ -23,10 +23,8 @@ $(function() {
 		var total_layouts = 0;
 		switch(i) {
 		    case 2: total_layouts = 2; break;
-		    case 3: case 4: total_layouts = 6; break;
-		    case 5: total_layouts = 7; break;
-		    case 6: total_layouts = 4; break; 
-		    case 7:total_layouts = 4;
+		    case 3: case 4: case 5: total_layouts = 6; break;
+		    case 6:case 7: total_layouts = 4; break;
 		} 
 
 		layoutsHTML += '<div id= "group_'+ i +'" class="layout_group" >';
@@ -45,17 +43,20 @@ $(function() {
 	$('#layout_group_container').append(layoutsHTML);
 	//End of generating the sample layouts
 
+	//Resize effect and display of "Select" text on layout examples
 	$(".photo_layout_example").hover(
 	  function() { $(this).children(".select_layout").show(); },
 	  function() { $(this).children(".select_layout").hide(); }
 	);
 
+	//When selecting the number of photos, we color the selected option
+	$(".total_photos").click(function() {
+		$(this).toggleClass("photos_selected").siblings().removeClass('photos_selected ');
+	});
+
+
 	//When clicking the numbered links... 
-	$( ".btn-link" ).click(function() {
-		$('#hdn_photo_num').val($(this).text());		
-		///ADD VALIDATION IN CASE NO ONE IS SELECTED
-
-
+	$( ".total_photos" ).click(function() {
 		//...we remove previously selected layouts
 		$(".photo_layout_example").removeClass('selected');
 
@@ -68,20 +69,10 @@ $(function() {
 		});
 	});
 
-	//When selecting the layout, we color the border red
-	$(".photo_layout_example").click(function() {
-		$(this).toggleClass("selected").siblings().removeClass('selected');
-	});
-
-	$('.total_photos').click(function() {	
-		var total_photos= $(this).text();
-	});	
-
 	//When clicking the next button...
-	$("#next").click(function() {
-
+	$(".photo_layout_example").click(function() {
 		//...we get the classes from the selected layout example.The class we need to get the layout is the first one of the list (with format "lay_##"). We use the split method to get it.		
-		classes_array = $('.selected').attr('class').split(" ");
+		classes_array = $(this).attr('class').split(" ");
 
 		//We get a class with a "lay_##" format
 		layout_class= classes_array[0];
@@ -98,7 +89,8 @@ $(function() {
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
 			var inputAndListener= '<div class="filter"><input type="file" id="files_' + i +'" '
-									+ '	name="files'+ '_' + i + '[] "/>'
+									+ '	name="files'+ '_' + i + '[] " class="inputfile"/>'
+									+ '<label for="files_' + i +'">Choose a file</label>'
 									+ '<output id="output_' + i +'"></output></div>';
 			
 			//Appending the formed string

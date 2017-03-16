@@ -159,10 +159,25 @@ div.lay_46_3,div.lay_46_4{
 	float:left;
 }
 
-div.lay_51_1,div.lay_51_2,div.lay_51_3,div.lay_51_4,div.lay_51_5{
-	height: 18%;
-	width: 98%;
+div.lay_51_1,div.lay_51_2,div.lay_51_3{
+	width: 31%;
+	height: 30%;
 	margin: 1% 1% 2% 1%;
+	float:left;
+}
+
+div.lay_51_4{
+	width: 31%;
+	height: 64%;
+	margin: 1% 1% 1% 1%;
+	float:left;
+}
+
+div.lay_51_5{
+	width: 64%;
+	height: 64%;
+	margin: 1% 1% 1% 1%;
+	float:right;
 }
 
 div.lay_52_1{
@@ -172,9 +187,9 @@ div.lay_52_1{
 }
 
 div.lay_52_2,div.lay_52_3{
-	width: 48%;
+	width: 47%;
 	height: 30%;
-	margin: 1% 2% 2% 1%;	
+	margin: 1% 2% 2% 2%;	
 	float:right;
 }
 
@@ -245,28 +260,6 @@ div.lay_56_5{
 	height: 60%;
 	margin: 1% 2% 2% 1%;	
 	float:left;
-	
-}
-
-div.lay_57_1,div.lay_57_2,div.lay_57_3{
-	width: 31%;
-	height: 30%;
-	margin: 1% 1% 2% 1%;
-	float:left;
-}
-
-div.lay_57_4{
-	width: 31%;
-	height: 64%;
-	margin: 1% 1% 1% 1%;
-	float:left;
-}
-
-div.lay_57_5{
-	width: 64%;
-	height: 64%;
-	margin: 1% 1% 1% 1%;
-	float:right;
 }
 
 div.lay_61_1{

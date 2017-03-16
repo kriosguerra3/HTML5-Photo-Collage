@@ -13,32 +13,71 @@ div#header{
 h1.title{
 	color:#fff;
 	font-weight:300;
+	font-size: 2.5em;
 }
 
 p.instructions_text{
 	font-weight: 300;
-	font-size: 30px;
-	float: left;
-	color: #005E9D;;
+	font-size: 1.6em;
+	
+	color: #005E9D;
+	display: inline-block;;
 }
 
 div.instruction_num{
 	border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 25px;
+    height: 25px;
     padding: 8px;
-    margin-right: 20px;
+    margin-right: 3px;
     background: #F53FC7;
-    border: 1px solid #fff;
     color: #fff;
-    text-align: center;
-    float: left;
+	display: inline-block;
+	padding-left: 10px;
+	padding-top: 3px;
 }
 
 #total_photos_container{
 	clear: both;
 	width: 80%;
 	margin: 0% 10% 0% 10%;
+	font-size: 15px;
+	font-weight: 300;
+}
+
+.total_photos{
+	width: 40px;
+	transition:0.5s;
+	margin-right: 20px;
+	border-radius: 7px;
+	font-size: 1.3em;
+	display: inline-block;
+	border: 1px solid #005E9D;
+	cursor: pointer;
+	background-color: #FFFAC3;
+}
+
+.total_photos > a{
+	color: #005E9D;
+}
+
+.photos_selected {	
+	border: 1px solid #FFFAC3;
+	background-color: #005E9D;
+}
+
+.photos_selected > a{	
+	color: #FFFAC3;
+}
+
+.total_photos > a{
+	text-decoration: none;
+}
+
+.total_photos:hover{
+	color: #F53FC7;	
+	transform: scale(1.05);
+	backface-visibility: hidden;
 }
 
 #layout_group_container{
@@ -48,8 +87,9 @@ div.instruction_num{
 .instructions_container{
 	padding: 0px 10% 0px 10%;
 	width: 80%;
-	margin: 65px 10% 50px 10%;
+	margin: 35px 10% 30px 10%;
 	text-align: left;
+	display: inline-block;
 }
 
 .row{
@@ -120,12 +160,20 @@ div.photo_layout_example{
 	cursor: pointer;
 	border: #D8D8D8 1px solid;
 	position: relative;	
+	transition: 0.5s;
+}
+
+div.photo_layout_example:hover{
+	-webkit-transform: scale(1.1);
+    transform: scale(1.05);
+    backface-visibility: hidden;
 }
 
 span.select_text{
 	font-size: 18px;
 	color: #F53FC7;
 	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
 }
 
 div.select_layout{
@@ -140,7 +188,8 @@ div.select_layout{
 }
 
 div.photo_layout_example > div:not(.select_layout){
-	background-color: #FFFC65;
+	background-color: #FFF983;
+    border: 1px solid #EBE333;
 }
 
 div#photo_layout_main{
@@ -178,7 +227,7 @@ div#photo_layout_main{
 }
 
 div.selected{
-	border: 2px solid #e05158;
+	border: 2px solid #F53FC7;
 }
 
 #screen_3{
@@ -189,22 +238,25 @@ div.selected{
 
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
-.upload {
+.inputfile {
     width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
-	z-index: -1;
+	z-index: 3;
 }
 
-.upload + label {
+.inputfile + label {
     font-size: 1.25em;
     font-weight: 700;
     color: white;
-    background-color: black;
+    background-color: #005E9D;
     display: inline-block;
-    cursor: pointer; 
+    cursor: pointer;
+    margin-top: 10%;
+    padding: 6px;
+    border-radius: 7px;
 }
 
 #lbl_upload{
@@ -212,11 +264,11 @@ div.selected{
 	padding-left: 60px;
 	background: url("upload_icon.png") no-repeat scroll 0 0 transparent;	
 }
-.upload:focus + label,
-.upload + label:hover {
-    background-color: red;
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #F53FC7;
 }
-.upload:focus + label {
+.inputfile:focus + label {
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
 }
