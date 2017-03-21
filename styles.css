@@ -1,6 +1,7 @@
 body{
 	background-image: url('img/gray_jean.png');
 }
+/*
 div#header{
 	margin: 0;
 	color: white;
@@ -8,11 +9,44 @@ div#header{
 	padding: 2%;
 	background-color:#005E9D;
 }
+*/
 
+div#header{
+	position: relative;
+	height: 80px;
+}
+
+div#header_background{
+	height: 80px;
+	background-image: url(img/pattern.jpg);
+	z-index: 1;
+	width: 100%;
+	opacity: 0.8;
+	margin: 0;
+	display: block;
+	position: absolute;
+}
+
+div#header_background::before{
+  background-color: rgba(0, 94, 157, 0.78);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+div#header_text{
+	height: 80px;
+	position: absolute;
+	z-index: 5;
+	width: 100%;
+	margin: 20px 0px 0px 20px;
+}
 
 h1.title{
 	color:#fff;
-	font-weight:300;
+	font-weight:400;
 	font-size: 2.5em;
 }
 
@@ -37,7 +71,7 @@ div.instruction_num{
 	padding-top: 3px;
 }
 
-#total_photos_container{
+div#total_photos_container{
 	clear: both;
 	width: 80%;
 	margin: 0% 10% 0% 10%;
@@ -45,43 +79,15 @@ div.instruction_num{
 	font-weight: 300;
 }
 
-.total_photos{
-	width: 40px;
-	transition:0.5s;
-	margin-right: 20px;
-	border-radius: 7px;
-	font-size: 1.3em;
-	display: inline-block;
-	border: 1px solid #005E9D;
-	cursor: pointer;
-	background-color: #FFFAC3;
-}
-
-.total_photos > a{
-	color: #005E9D;
-}
-
-.photos_selected {	
-	border: 1px solid #FFFAC3;
-	background-color: #005E9D;
-}
-
-.photos_selected > a{	
-	color: #FFFAC3;
-}
-
-.total_photos > a{
-	text-decoration: none;
-}
-
-.total_photos:hover{
-	color: #F53FC7;	
-	transform: scale(1.05);
-	backface-visibility: hidden;
-}
-
 #layout_group_container{
 	clear: both;
+}
+
+.total_photos{
+	margin-right: 20px;
+	width: 45px;
+	font-size: medium;
+	height: 33px;
 }
 
 .instructions_container{
@@ -92,7 +98,7 @@ div.instruction_num{
 	display: inline-block;
 }
 
-.row{
+#screen_1{
 	text-align: center;
 }
 
@@ -105,8 +111,8 @@ span#camera_icon{
 
 div.filters_group{
 	max-height: 420px;
-	padding-top: 15px;
 	background-image: url('img/ep_naturalblack.png');
+	padding-top: 17px;
 }
 
 div.filter_sample{
@@ -118,7 +124,7 @@ div.filter_sample{
 div.filter_thumbnail{	
 	background-image: url("img/sky.jpg");
 	max-width:200px;
-    margin: 0 auto;
+    margin: 10px 0px 0px 0px;
 	height: 80px;	
 }
 
@@ -135,13 +141,19 @@ div#settings{
 }
 
 #layout_main_container{
-	text-align: center;
+	text-align: left;
 }
 
 div.button_container{
 	width: 80%;
 	margin:0% 10% 5% 10%;
 	text-align: center;
+}
+
+div.selected_filter{
+	border:2px solid #5D97BF;
+	color: #5D97BF;
+	padding-top:1px;
 }
 
 #download{visibility:hidden;}
@@ -179,12 +191,14 @@ span.select_text{
 div.select_layout{
 	position: absolute;
 	width: 80px;
-	height: 40px;
-	border: 1px solid #F53FC7;
+	height: 40px;	
 	margin: 45px 0px 0px 52px;
 	padding-top:5px;
-	border-radius: 8px; 
 	display: none;
+}
+
+div.select_layout > span{
+	color: #005E9D;
 }
 
 div.photo_layout_example > div:not(.select_layout){
@@ -203,9 +217,10 @@ div#photo_layout_main{
 }
 
 .photo{
-	background-color: #FFFBD0;
 	z-index: 10;
 	overflow: hidden;
+	background-color: #FFF983;
+	border: 1px solid #EBE333;
 }
 
 .draggable_photo {
@@ -222,8 +237,19 @@ div#photo_layout_main{
 	z-index: 10;
 	position: absolute;
 	cursor: pointer;
-	display: none;
 	height: 25px;
+	display: none;
+	right: 2px;
+	top: 4px;
+}
+
+.btn-filter{
+	z-index: 10;	
+	display: none;
+	
+	position: absolute;
+	top: 5px;
+	left: 2px;
 }
 
 div.selected{
@@ -236,6 +262,11 @@ div.selected{
 
 }
 
+#flters{
+	width: 80%;
+	margin: 2% 10% 1% 10%;
+
+}
 /**** STYLES FOR CHOOSE FILE BUTTONS ****/
 
 .inputfile {
@@ -248,26 +279,23 @@ div.selected{
 }
 
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: #005E9D;
+    font-size: 1.05em;
+    font-weight: 300;
+    color: #fff;
+    background-color: #5BC0DE;
     display: inline-block;
     cursor: pointer;
-    margin-top: 10%;
+    margin-top: 6%;
     padding: 6px;
     border-radius: 7px;
+    border: 1px solid #5BC0DE;
 }
 
-#lbl_upload{
-	line-height: 60px;
-	padding-left: 60px;
-	background: url("upload_icon.png") no-repeat scroll 0 0 transparent;	
-}
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: #F53FC7;
+    background-color: #007ACC;
 }
+
 .inputfile:focus + label {
 	outline: 1px dotted #000;
 	outline: -webkit-focus-ring-color auto 5px;
