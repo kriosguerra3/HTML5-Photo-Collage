@@ -56,6 +56,44 @@ $(function() {
 		$(this).toggleClass("active").siblings().removeClass('active');
 	});
 
+	//Dynamically generate the HTML for the filters samples, so it's easily to make changes to it
+		var filtersArray = ["none","blackandwhite","nineteen77", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson"];
+		
+		//We use 2 for loops since we want them in 2 rows.
+		var columnsPerRow = 6;		
+		//We use this counter to keep track of the real number of columns that are displayed so far
+		//var columnsCounter = 1;
+
+		//Creating the string that will contain the HTML for the filters samples,
+		var filtersHTML = '';	
+		filtersHTML += '<div class="row-fluid">';				
+
+		for (i = 0; i < filtersArray.length; i++) {						
+			filterName = filtersArray[i];
+		    filtersHTML += '<div class ="filter_sample col-xs-1 col-sm-1 col-md-1 col-lg-1" data-filter-name="'+filterName+'">'
+		    			+  '<div class="filter_thumbnail '+filterName+'"></div>'
+		    			+  '<span class="filter_name">'+filterName+'</span></div>';
+		}
+		filtersHTML += '</div>';	
+		//Append the filters
+		$("#filters_wrapper").append(filtersHTML);
+
+
+		//Creating the string that will contain the HTML for the background color samples,
+		var backgroundColorsArray = ["AliceBlue","Aquamarine","Azure","Black","HotPink","IndianRed","Ivory","LemonChiffon","LightBlue","LightGreen","LightPink","MediumOrchid","MediumPurple","MediumVioletRed","MidnightBlue","OliveDrab","PaleGoldenRod","Palegreen","PaleVioletRed","PeachPuff","Purple","SteelBlue","Turquoise","White","WhiteSmoke"];
+
+
+		var backgroundsHTML = '';	
+		backgroundsHTML += '<div class="row-fluid">';				
+
+		for (i = 0; i < backgroundColorsArray.length; i++) {						
+			colorName = backgroundColorsArray[i];
+		    backgroundsHTML += '<div class="color_sample" style="background-color:'+colorName+'"></div>';
+		}
+		backgroundsHTML += '</div>';	
+		//Append the filters
+		$("#background_colors_wrapper").append(backgroundsHTML);
+
 
 	//When clicking the numbered links... 
 	$( ".total_photos" ).click(function() {
@@ -102,14 +140,24 @@ $(function() {
 			$( "#output_" + i ).draggable();
 
 		};
-		//We make the photo draggable using JQuery UI
-		$(".photo").resizable({
-	      containment: "#photo_layout_main"
-	    });
 		
-		$(".photo").draggable({ containment: "#photo_layout_main", scroll: false });
+		//We make the photo draggable using JQuery UI				
+		//$(".photo").draggable({ containment: "#photo_layout_main", scroll: false });
+		
+		//We make the photo resizable using JQuery UI		
+		$("#photo_layout_main").resizable({ 
+			minWidth: 600,
+			minHeight: 400 ,
+			resize: function( event, ui ) {
+			    //Restrict resizing to 1 pixel increments:
+			    ui.size.height = Math.round( ui.size.height / 1 ) * 1;
+			    ui.size.width = Math.round( ui.size.width / 1 ) * 1;
+			    $("#width").val(ui.size.width);
+				$("#height").val(ui.size.height);
+			}
 
-		$("#photo_layout_main").resizable();
+		});
+		
 
 		//Hide the div from the forst step
 		$("#screen_1").css("display","none");
@@ -119,43 +167,72 @@ $(function() {
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
 
-
-		//Dynamically generate the HTML for the filters samples, so it's easily to make changes to it
-
-		var filters = ["none","blackandwhite","nineteen77", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson"];
 		
-		//We use 2 for loops since we want them in 2 rows.
-		var columnsPerRow = 6;		
-		//We use this counter to keep track of the real number of columns that are displayed so far
-		//var columnsCounter = 1;
 
-		//Creating the string that will contain the HTML for the filters samples,
-		var filtersHTML = '';	
-		filtersHTML += '<div class="row-fluid">';				
-
-		for (i = 0; i < filters.length; i++) {						
-			filterName = filters[i];
-		    filtersHTML += '<div class ="filter_sample col-xs-1 col-sm-1 col-md-1 col-lg-1" data-filter-name="'+filterName+'">'
-		    			+  '<div class="filter_thumbnail '+filterName+'"></div>'
-		    			+  '<span class="filter_name">'+filterName+'</span></div>';
-		}
-		filtersHTML += '</div>';	
-		//Append the filters
-		$("#filters_wrapper").append(filtersHTML);
 	});
 
 	$("#previous").click(function() {
 		//Hide the div from the first step
 		$("#screen_1").css("display","block");
 		$("#screen_2").css("display","none");
-		$("#photo_layout_main").html("");
-		$("#filters_wrapper").html("");	
+		$("#photo_layout_main").find(".photo").remove();
 	});
+	
+	//Function to apply changes in widh and height after the user has stopped typing. Source: http://stackoverflow.com/questions/14042193
+	$.fn.extend({
+        donetyping: function(callback,timeout){
+            timeout = timeout || 1e3; // 1 second default timeout
+            var timeoutReference,
+                doneTyping = function(el){
+                    if (!timeoutReference) return;
+                    timeoutReference = null;
+                    callback.call(el);
+                };
+            return this.each(function(i,el){
+                var $el = $(el);
+                // Chrome Fix (Use keyup over keypress to detect backspace)
+                // thank you @palerdot
+                $el.is(':input') && $el.on('keyup keypress paste',function(e){
+                    // This catches the backspace button in chrome, but also prevents
+                    // the event from triggering too preemptively. Without this line,
+                    // using tab/shift+tab will make the focused element fire the callback.
+                    if (e.type=='keyup' && e.keyCode!=8) return;                    
+                    // Check if timeout has been set. If it has, "reset" the clock and
+                    // start over again.
+                    if (timeoutReference) clearTimeout(timeoutReference);
+                    timeoutReference = setTimeout(function(){
+                        // if we made it here, our timeout has elapsed. Fire the
+                        // callback
+                        doneTyping(el);
+                    }, timeout);
+                }).on('blur',function(){
+                    // If we can, fire the event since we're leaving the field
+                    doneTyping(el);
+                });
+            });
+        }
+    });
 
-	//When selecting the individual photo on a layout, we color the border red. We use "on()" since "click()" doesn't work for dinamically created elements.
-	//$('body').on('click', 'div.photo', function() {	 
-			//$(this).toggleClass("selected").siblings().removeClass('selected');
-	//});
+	//Changing the widht and height after the user is done typing
+	$("#width, #height").donetyping(function(){
+		var newWidth= $("#width").val();
+		var newHeight= $("#height").val();
+
+		if(newWidth < 600){
+			$("#width").val(600);
+		}
+		else{
+			$('#photo_layout_main').css("width",$("#width").val());			
+		}
+
+		if(newHeight < 400){
+			$("#height").val(400);
+		}
+		else{
+			$('#photo_layout_main').css("height",$("#height").val());
+		}
+	  
+	});
 
 	//When clicking an "add filter" button, we store in the hdnParentLayoutClass hidden field the class of the div we will aply the filter to
 	$('body').on('click', '.btn-filter', function() {	 
@@ -170,15 +247,15 @@ $(function() {
 		
 		//Removing the blue border from filters selected for other photos
 		$(".filter_sample").removeClass('selected_filter');
+		
 		//Apply CSS class to give it a blue border
 		$("#filters_wrapper").find('[data-filter-name="'+current_filter+'"]').addClass('selected_filter');		
 
 		//Opening the modal
 		$("#filters").dialog("open");
-		console.log("selected_element:" + selected_element + " current filter  " + current_filter);
 	});
 
-	//When clicking a filter div, we apply it to the photo that opened the dialog window
+	//When clicking a color div, we apply it to the photo that opened the dialog window
 	$('body').on('click', 'div.filter_sample', function() {	 
 	
 		$(this).toggleClass('selected_filter').siblings().removeClass('selected_filter');
@@ -187,18 +264,22 @@ $(function() {
 		filterName = $(this).data("filter-name");
 		
 		//forming the selector of the photo container
-		var selected_element = "." + $('#hdnParentLayoutClass').val();
+		var selectedElement = "." + $('#hdnParentLayoutClass').val();
 		
 		//Remove all classes but "filter" from the selected photo
-		$(selected_element).find(".filter").removeClass().addClass("filter");
-		$(selected_element).find(".draggable_photo").attr("data-filter",filterName);
+		$(selectedElement).find(".filter").removeClass().addClass("filter");
+		$(selectedElement).find(".draggable_photo").attr("data-filter",filterName);
 		
 		//Adding the single filter
 		if(filterName != 'none'){
-			$(selected_element).find(".filter").addClass(filterName);	
+			$(selectedElement).find(".filter").addClass(filterName);	
 		}
+	});
 
-
+//When clicking a color background sample div, we color the background of the layout
+	$('body').on('click', 'div.color_sample', function() {	 
+		var newColor = $(this).css("background-color");
+		$("#photo_layout_main,#selected_color_sample").css("background-color", newColor);
 	});
 
 	$("#filters").dialog({		
@@ -214,6 +295,13 @@ $(function() {
 		}
 	}); 
 
+	$("#selected_background_color").click(function() {
+		//Opening the modal
+		$("#background_colors").dialog("open");
+		
+	}); 
+	
+
 	var element = $("#photo_layout_main"); 
     $("#download").on('click', function () {
     	//Hiding the close icons and red border ("selected"class)from photos
@@ -221,12 +309,12 @@ $(function() {
     	$("#photo_layout_main").find(".photo").removeClass("selected");
          html2canvas(element, {
          onrendered: function (canvas) {
-                $("#canvas_area").html('').append(canvas);
-                getCanvas = canvas;
-                //display close icons
-                $(".close_icon").css("display","block");
-                $("#screen_3").dialog("open");			
-             }
+	            $("#canvas_area").html('').append(canvas);
+	            getCanvas = canvas;
+	            //display close icons
+	            $(".close_icon").css("display","block");
+	            $("#screen_3").dialog("open");			
+            }
          });
     });
    
@@ -241,11 +329,23 @@ $(function() {
 			effect: "fadeOut",
 			duration: 500
 		}
-	}); 
+	});
 
-
-	 $("#filters").dialog({		
+	$("#filters").dialog({		
 		width: $(window).width() - 100,
+		autoOpen: false,
+		show: {
+			effect: "fadeIn",
+			duration: 500
+		},
+		hide: {
+			effect: "fadeOut",
+			duration: 500
+		}
+	});
+
+	$("#background_colors").dialog({		
+		width: 390,
 		autoOpen: false,
 		show: {
 			effect: "fadeIn",
@@ -308,10 +408,8 @@ function handleFileSelect(event) {
 
 				var filter_button_id = container_id.replace(/output/gi, "filter");
 				document.getElementById(filter_button_id).style.display = "block";
-
 			};
 		})(f);
-
 	  // Read in the image file as a data URL.
 	  reader.readAsDataURL(f);
 	}
@@ -325,5 +423,6 @@ function deletePhoto(container_id){
 	//Restoring the input value to "No file chosen"
 	$("#files_" + container_id).val('');
 	$("#close_" + container_id).css("display", "none");
+	$("#filter_" + container_id).css("display", "none");
 	$("#output_"+ container_id).parent().removeClass().addClass("filter");
 }

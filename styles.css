@@ -12,8 +12,8 @@ div#header{
 */
 
 div#header{
-	position: relative;
 	height: 80px;
+	position: relative;
 }
 
 div#header_background{
@@ -40,7 +40,6 @@ div#header_text{
 	height: 80px;
 	position: absolute;
 	z-index: 5;
-	width: 100%;
 	margin: 20px 0px 0px 20px;
 }
 
@@ -53,9 +52,8 @@ h1.title{
 p.instructions_text{
 	font-weight: 300;
 	font-size: 1.6em;
-	
 	color: #005E9D;
-	display: inline-block;;
+	display: inline-block;
 }
 
 div.instruction_num{
@@ -71,12 +69,47 @@ div.instruction_num{
 	padding-top: 3px;
 }
 
+.px{
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.selected_background_color{
+	cursor: pointer;
+}
+
+.color_sample{
+	width: 35px;	
+	height: 35px;
+	float: left;
+	border: solid 1px gainsboro; 
+	cursor: pointer;
+	background-color: white;
+}
+
+#selected_color_label{
+	width: 45%;
+	float: left;
+}
+
 div#total_photos_container{
 	clear: both;
 	width: 80%;
 	margin: 0% 10% 0% 10%;
 	font-size: 15px;
 	font-weight: 300;
+}
+
+div.options_container{
+	background-color: #B6B6B6;
+	padding-top: 20px;
+	display: block;
+	overflow: auto;
+	padding: 15px 0px 15px 5px;
+}
+
+#download{
+	margin-bottom: -4px;
 }
 
 #layout_group_container{
@@ -141,13 +174,11 @@ div#settings{
 }
 
 #layout_main_container{
-	text-align: left;
+	text-align: center;
 }
 
-div.button_container{
-	width: 80%;
-	margin:0% 10% 5% 10%;
-	text-align: center;
+a.title{
+	text-decoration: none;
 }
 
 div.selected_filter{
@@ -219,8 +250,9 @@ div#photo_layout_main{
 .photo{
 	z-index: 10;
 	overflow: hidden;
-	background-color: #FFF983;
-	border: 1px solid #EBE333;
+	background-color: #FFFFE0;
+	border: 1px solid #D3D3D3;
+	border-radius: 9px;
 }
 
 .draggable_photo {
@@ -246,7 +278,6 @@ div#photo_layout_main{
 .btn-filter{
 	z-index: 10;	
 	display: none;
-	
 	position: absolute;
 	top: 5px;
 	left: 2px;
