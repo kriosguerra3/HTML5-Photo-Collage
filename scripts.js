@@ -8,14 +8,6 @@ $(function() {
 		alert('HTML5 file APIs are not fully supported in this browser :/');
 	}
 
-	/// testing purposes: Automated clicks 
-	//setTimeout(function(){ $('.lay_21_1').trigger('click'); }, 1000);
-	//setTimeout(function(){ $('#next').trigger('click'); }, 1500);
-	//setTimeout(function(){ 
-		//$('#output_1').css("background-image","url(sample_1.png)").css("height","300px");
-		//$('#output_2').css("background-image","url(sample_2.png)").css("height","300px");}, 2500);
-	///END OF AUTOMATED CLICKS////
-
 	//Generating the sample layouts
 	var layoutsHTML = '';	
 	//Group of layouts
@@ -52,25 +44,25 @@ $(function() {
 	);
 
 	//When selecting the number of photos, we color the selected option
-	$(".total_photos").click(function() {
-		$(this).toggleClass("active").siblings().removeClass('active');
-	});
+	//$(".total_photos").click(function() {
+		//$(this).toggleClass("active").siblings().removeClass('selected_number');
+	//});
 
+	$("#link_group_2").parent().addClass("active");	
+	
 	//Dynamically generate the HTML for the filters samples, so it's easily to make changes to it
-		var filtersArray = ["none","blackandwhite","nineteen77", "sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson"];
+		var filtersArray = ["none","blackwhite","nineteen77","sunset","xpro2","walden","toaster","sutro","rise","lofi","kelvin","hudson"];
 		
 		//We use 2 for loops since we want them in 2 rows.
 		var columnsPerRow = 6;		
-		//We use this counter to keep track of the real number of columns that are displayed so far
-		//var columnsCounter = 1;
-
+		
 		//Creating the string that will contain the HTML for the filters samples,
 		var filtersHTML = '';	
 		filtersHTML += '<div class="row-fluid">';				
 
 		for (i = 0; i < filtersArray.length; i++) {						
 			filterName = filtersArray[i];
-		    filtersHTML += '<div class ="filter_sample col-xs-1 col-sm-1 col-md-1 col-lg-1" data-filter-name="'+filterName+'">'
+		    filtersHTML += '<div class ="filter_sample" data-filter-name="'+filterName+'">'
 		    			+  '<div class="filter_thumbnail '+filterName+'"></div>'
 		    			+  '<span class="filter_name">'+filterName+'</span></div>';
 		}
@@ -81,7 +73,6 @@ $(function() {
 
 		//Creating the string that will contain the HTML for the background color samples,
 		var backgroundColorsArray = ["AliceBlue","Aquamarine","Azure","Black","HotPink","IndianRed","Ivory","LemonChiffon","LightBlue","LightGreen","LightPink","MediumOrchid","MediumPurple","MediumVioletRed","MidnightBlue","OliveDrab","PaleGoldenRod","Palegreen","PaleVioletRed","PeachPuff","Purple","SteelBlue","Turquoise","White","WhiteSmoke"];
-
 
 		var backgroundsHTML = '';	
 		backgroundsHTML += '<div class="row-fluid">';				
@@ -123,9 +114,12 @@ $(function() {
 		//We append to the big layout we will be building our collage on the divs and classes from the selected layout.
 		for (var i = 1; i <= total_photos; i++) {
 			$('#photo_layout_main').append( '<div class="' +layout_class + '_' + i +' photo">'
-												+ '<button id = "filter_'+ i +'" type="button" class="btn btn-info btn-filter btn-xs" data-layout-class="' +layout_class + '_' + i +'"><span class="glyphicon glyphicon-plus"></span>Add filter</button>'
-												+ '<img id = "close_'+ i +'" class="close_icon" onClick="deletePhoto('+ i +')" src="img/close.png">'
-												+'</div>');
+												+ '<div class = "button_container">'
+												+ '<button id = "filter_'+ i +'" type="button" class="btn btn-info btn-filter btn-xs" data-layout-class="' + layout_class + '_' + i +'">'
+												+ '<span class="glyphicon glyphicon-plus"></span>Add filter</button>'
+												+ '<button id = "close_'+ i +'" type="button" class="btn btn-danger btn-xs close_icon" onClick="deletePhoto('+ i +')">'
+												+ '<span class="glyphicon glyphicon-remove"></span>Delete</button>'
+												+'</div></div>');
 
 			//For each div, we append a file type input and an event listener, so we can upload images individually
 			var inputAndListener= '<div class="filter"><input type="file" id="files_' + i +'" '
@@ -138,11 +132,7 @@ $(function() {
 
 			//We make the photo draggable using JQuery UI
 			$( "#output_" + i ).draggable();
-
 		};
-		
-		//We make the photo draggable using JQuery UI				
-		//$(".photo").draggable({ containment: "#photo_layout_main", scroll: false });
 		
 		//We make the photo resizable using JQuery UI		
 		$("#photo_layout_main").resizable({ 
@@ -155,20 +145,15 @@ $(function() {
 			    $("#width").val(ui.size.width);
 				$("#height").val(ui.size.height);
 			}
-
 		});
-		
 
-		//Hide the div from the forst step
+		//Hide the div from the first step
 		$("#screen_1").css("display","none");
 		$("#screen_2").css("display","block");
 		$("#download").css("visibility","visible");
 
 		//Adding the listener for when we upload a photo
 		document.getElementById("photo_layout_main").addEventListener("change", handleFileSelect, false);
-
-		
-
 	});
 
 	$("#previous").click(function() {
@@ -231,7 +216,6 @@ $(function() {
 		else{
 			$('#photo_layout_main').css("height",$("#height").val());
 		}
-	  
 	});
 
 	//When clicking an "add filter" button, we store in the hdnParentLayoutClass hidden field the class of the div we will aply the filter to
@@ -254,10 +238,26 @@ $(function() {
 		//Opening the modal
 		$("#filters").dialog("open");
 	});
+	
+	$("#filters").dialog({	
+		position: {
+	    	my: "right middle", at: "right middle", of: $(window),collision: 'flipfit'
+	    },	 	
+		width: ($(window).width()/3),
+		height:($("#photo_layout_main").height()),
+		autoOpen: false,
+		show: {
+			effect: "fadeIn",
+			duration: 500
+		},
+		hide: {
+			effect: "fadeOut",
+			duration: 500
+		}
+	});
 
 	//When clicking a color div, we apply it to the photo that opened the dialog window
 	$('body').on('click', 'div.filter_sample', function() {	 
-	
 		$(this).toggleClass('selected_filter').siblings().removeClass('selected_filter');
 
 		//Getting the filtername from the HTML5 data attributes  filter-name 
@@ -276,73 +276,16 @@ $(function() {
 		}
 	});
 
-//When clicking a color background sample div, we color the background of the layout
+	//When clicking a color background sample div, we color the background of the layout
 	$('body').on('click', 'div.color_sample', function() {	 
 		var newColor = $(this).css("background-color");
 		$("#photo_layout_main,#selected_color_sample").css("background-color", newColor);
 	});
 
-	$("#filters").dialog({		
-		width: $(window).width() - 400,
-		autoOpen: false,
-		show: {
-			effect: "fadeIn",
-			duration: 500
-		},
-		hide: {
-			effect: "fadeOut",
-			duration: 500
-		}
-	}); 
-
 	$("#selected_background_color").click(function() {
 		//Opening the modal
-		$("#background_colors").dialog("open");
-		
-	}); 
-	
-
-	var element = $("#photo_layout_main"); 
-    $("#download").on('click', function () {
-    	//Hiding the close icons and red border ("selected"class)from photos
-    	$(".close_icon").css("display","none");
-    	$("#photo_layout_main").find(".photo").removeClass("selected");
-         html2canvas(element, {
-         onrendered: function (canvas) {
-	            $("#canvas_area").html('').append(canvas);
-	            getCanvas = canvas;
-	            //display close icons
-	            $(".close_icon").css("display","block");
-	            $("#screen_3").dialog("open");			
-            }
-         });
-    });
-   
-    $("#screen_3").dialog({		
-		width: $(window).width() - 100,
-		autoOpen: false,
-		show: {
-			effect: "fadeIn",
-			duration: 500
-		},
-		hide: {
-			effect: "fadeOut",
-			duration: 500
-		}
-	});
-
-	$("#filters").dialog({		
-		width: $(window).width() - 100,
-		autoOpen: false,
-		show: {
-			effect: "fadeIn",
-			duration: 500
-		},
-		hide: {
-			effect: "fadeOut",
-			duration: 500
-		}
-	});
+		$("#background_colors").dialog("open");		
+	});	
 
 	$("#background_colors").dialog({		
 		width: 390,
@@ -356,6 +299,35 @@ $(function() {
 			duration: 500
 		}
 	}); 
+
+	var element = $("#photo_layout_main"); 
+    $("#download").on('click', function () {
+    	//Hiding the close icons and red border ("selected"class)from photos
+    	$(".close_icon,.btn-filter").css("display","none");
+    	$("#photo_layout_main").find(".photo").removeClass("selected");
+        	html2canvas(element, {
+         		onrendered: function (canvas) {
+		            $("#canvas_area").html('').append(canvas);
+		            getCanvas = canvas;
+		            //display close icons
+		            $(".close_icon,.btn-filter").css("display","block");
+		            $("#screen_3").dialog("open");			
+            }
+         });
+    });
+
+    $("#screen_3").dialog({		
+		width: $(window).width() - 100,
+		autoOpen: false,
+		show: {
+			effect: "fadeIn",
+			duration: 500
+		},
+		hide: {
+			effect: "fadeOut",
+			duration: 500
+		}
+	});
 
     //If we are in the screen # 2, we warn the user about leaving the page
   	window.onbeforeunload = function(event) {

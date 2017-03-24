@@ -11,7 +11,7 @@ Modified my Kelly Rios for filter support. www.kellyrios.com
 
     //Added by Krios//
     window.filters={sunset:"sepia(50%)",
-                    blackandwhite : "grayscale(100%)",
+                    blackwhite : "grayscale(100%)",
                     none : "none",
                     xpro2 : "contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg)",
                     walden : "sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5)",

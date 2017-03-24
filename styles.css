@@ -12,12 +12,11 @@ div#header{
 */
 
 div#header{
-	height: 80px;
 	position: relative;
+	height: 90px;
 }
 
 div#header_background{
-	height: 80px;
 	background-image: url(img/pattern.jpg);
 	z-index: 1;
 	width: 100%;
@@ -25,6 +24,7 @@ div#header_background{
 	margin: 0;
 	display: block;
 	position: absolute;
+	height: 90px;
 }
 
 div#header_background::before{
@@ -37,7 +37,6 @@ div#header_background::before{
 }
 
 div#header_text{
-	height: 80px;
 	position: absolute;
 	z-index: 5;
 	margin: 20px 0px 0px 20px;
@@ -71,7 +70,7 @@ div.instruction_num{
 
 .px{
 	font-weight: 400;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .selected_background_color{
@@ -87,9 +86,27 @@ div.instruction_num{
 	background-color: white;
 }
 
-#selected_color_label{
-	width: 45%;
+.option_no_input{
+	margin-top: 12px;
+}
+
+.option_input{
+	margin-top: 7px;
+}
+
+#selected_color_sample{
+	width: 20px;	
+	height: 20px;
 	float: left;
+	border: solid 1px gainsboro; 
+	cursor: pointer;
+	background-color: white;
+}
+
+#selected_color_label{
+	width: 64%;
+	float: left;
+	text-align: center;	
 }
 
 div#total_photos_container{
@@ -101,11 +118,11 @@ div#total_photos_container{
 }
 
 div.options_container{
-	background-color: #B6B6B6;
-	padding-top: 20px;
+	background-color: #C7CED5;
 	display: block;
 	overflow: auto;
-	padding: 15px 0px 15px 5px;
+	padding: 10px 0px 15px 2px;
+	text-align: center;
 }
 
 #download{
@@ -120,7 +137,11 @@ div.options_container{
 	margin-right: 20px;
 	width: 45px;
 	font-size: medium;
-	height: 33px;
+	height: 33px;	
+}
+
+.total_photos:hover{
+	text-decoration: none;
 }
 
 .instructions_container{
@@ -143,15 +164,17 @@ span#camera_icon{
 }
 
 div.filters_group{
-	max-height: 420px;
 	background-image: url('img/ep_naturalblack.png');
 	padding-top: 17px;
+	text-align: center;
 }
 
 div.filter_sample{
 	text-align: center;
-	float:left;
+	display: inline-block;
 	cursor: pointer;
+	width: 80px;
+	margin: 10px;
 }
 
 div.filter_thumbnail{	
@@ -174,7 +197,7 @@ div#settings{
 }
 
 #layout_main_container{
-	text-align: center;
+	text-align: left;
 }
 
 a.title{
@@ -182,9 +205,17 @@ a.title{
 }
 
 div.selected_filter{
-	border:2px solid #5D97BF;
+	border:3px solid #5D97BF;
 	color: #5D97BF;
-	padding-top:1px;
+}
+
+#previous{
+	margin-top: 5px;
+}
+
+div.button_containe{
+	position: relative;
+	z-index: 10;
 }
 
 #download{visibility:hidden;}
@@ -242,9 +273,10 @@ div#photo_layout_main{
 	width: 600px;
 	background-color: #fff;
 	display: inline-block;
-	margin: 15px;
+	margin: 30px 15px 0px 15px;
 	padding: 15px;
 	border: #D8D8D8 1px solid;
+	text-align: center;
 }
 
 .photo{
@@ -265,22 +297,24 @@ div#photo_layout_main{
 	left: -50px;
 }
 
+.button_container{
+	position: relative;
+}
+
 .close_icon{
-	z-index: 10;
-	position: absolute;
 	cursor: pointer;
 	height: 25px;
 	display: none;
-	right: 2px;
-	top: 4px;
+	position: absolute;
+	z-index: 10;
+	right: 0px;
 }
 
 .btn-filter{
 	z-index: 10;	
 	display: none;
 	position: absolute;
-	top: 5px;
-	left: 2px;
+	left: 0px;
 }
 
 div.selected{

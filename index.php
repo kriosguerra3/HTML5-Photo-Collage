@@ -27,9 +27,9 @@
 					<? 
 					for ($i=2; $i <= 7 ; $i++) { 
 						//2 photos is selected by default. We add a CSS class to color it
-						$i == 2 ? $active ='active' : $active =''; 
+						$i == 2 ? $selected_number ='selected_number' : $selected_number =''; 
 					?>
-					<button type="button" id="link_group_<? echo $i ?>" class="btn btn-link total_photos <? echo $active ?>">
+					<button type="button" id="link_group_<? echo $i ?>" class="btn btn-link total_photos <? echo $selected_number ?>">
 						<? echo $i ?>								
 					</button>
 					<? } ?>
@@ -45,45 +45,39 @@
 			<div id="screen_2" >				
 				<div class="row">				
 					<div class = "options_container">
+						<div class="instruction_num">3</div> 
+						<p class="instructions_text">Upload photos and add filters</p>
 						<form class="form-inline">
-							<div class="col-xs-12 col-sm-12 col-md-2 col-lg-1">
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 option_input">
 					         	<button type="button" id="previous" class="btn btn-info btn-sm">
 									<span class="glyphicon glyphicon-arrow-left"></span>
 									Back								
 								</button>
 					        </div>
-					        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-					             <label class="px" for="width">Width:</label> 
+					        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 option_input">
+					             <label class="px text-primary" for="width">Width:</label> 
 					             <input type="text" class="form-control" id="width" placeholder="" size="4" value="600"  maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
-					             <span class ="px"> px</span>					             
+					             <span class ="px text-primary"> px</span>					             
 					        </div>
 
-					         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-					              <label class="px" for="height">Height:</label> 									
-					             <input type="text" class="form-control" id="height" placeholder="" size="4" value="400" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'> 
-					             <span class ="px"> px</span>
+					         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 option_input">
+					            <label class="px text-primary" for="height">Height:</label> 
+					            <input type="text" class="form-control" id="height" placeholder="" size="4" value="400" maxlength="4" onkeypress='return event.charCode >= 48 && event.charCode <= 57'> 
+					             <span class ="px text-primary"> px</span>
 					        </div>
-							<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+							<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 option_no_input">
 								<div id="selected_background_color">
-									<div id = "selected_color_label"><span class="px">Background Color: </span></div>
-									<div id = "selected_color_sample" class = "color_sample"></div>
+									<div id = "selected_color_label"><span class="px text-primary">Border Color: </span></div>
+									<div id = "selected_color_sample"></div>
 								</div>
-
-
 					        </div>
-
-					        
-					         <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+					         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
 					         	<button type="button" id="download" class="btn btn-sample btn-lg">
 									<span class="glyphicon glyphicon-th-large"></span> Create Collage
 								</button>	
 					         </div>
 						</form>
 					</div>	
-					<!--<div class = "instructions_container">
-						<div class="instruction_num">3</div> 
-						<p class="instructions_text">Upload photos and add filters</p>
-					</div>-->
 					<div class="col-md-12 col-lg-12">					
 						<div id="layout_main_container">
 							<div id="photo_layout_main" ></div>
@@ -99,6 +93,7 @@
 				<div id="background_colors_wrapper" class="row no-gutters"></div>
 			</div>
 			<div id="screen_3" title="Download">
+				<p class="text-primary"> To save the image, right click above it and select "Save Image As" from the menu.</p>
 				<div id="canvas_area"></div>
 			</div>
 		</div>
