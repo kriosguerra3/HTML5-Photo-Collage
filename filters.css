@@ -1,53 +1,53 @@
 /*All -webkit-filter: properties are for Safari 6.0 - 9.0 */
 
 .blackwhite{
-  -webkit-filter: grayscale(100%); 
   filter: grayscale(100%);
+  -webkit-filter: grayscale(100%); 
   -ms-filter:grayscale(100%);
 
 }
 
 .sepia{
-	-webkit-filter: sepia(100%); 
   filter: sepia(100%);
+  -webkit-filter: sepia(100%); 
   -ms-filter:sepia(100%);
 }
 
 .sunset{
-	-webkit-filter: sepia(50%); 
   filter: sepia(50%);
+  -webkit-filter: sepia(50%); 
   -ms-filter:sepia(50%);
 }
 
 /*Credit from these filters: https://designpieces.com/2014/09/instagram-filters-css3-effects/*/
 
 .xpro2 {
-  -webkit-filter: contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg);
   filter: contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg);
+  -webkit-filter: contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg);
   -ms-filter:contrast(1.3) brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-20deg);
 }
 
 .walden {
-  -webkit-filter: sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5);
   filter: sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5);
+  -webkit-filter: sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5);
   -ms-filter:sepia(0.35) contrast(0.9) brightness(1.1) hue-rotate(-10deg) saturate(1.5);
 }
 
 .toaster {
-  -webkit-filter:sepia(0.4) saturate(2.5) hue-rotate(-30deg) contrast(0.67);
   -filter:sepia(0.4) saturate(2.5) hue-rotate(-30deg) contrast(0.67);
+  -webkit-filter:sepia(0.4) saturate(2.5) hue-rotate(-30deg) contrast(0.67);
   -ms-filter:sepia(0.4) saturate(2.5) hue-rotate(-30deg) contrast(0.67);
 }
 
 .sutro {
-  -webkit-filter: brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg);
   filter: brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg);
+  -webkit-filter: brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg);
   -ms-filter:brightness(0.75) contrast(1.3) sepia(0.5) hue-rotate(-25deg);;
 }
 
 .rise {
-  -webkit-filter: saturate(1.4) sepia(0.25) hue-rotate(-15deg) contrast(0.8) brightness(1.1);
   filter: saturate(1.4) sepia(0.25) hue-rotate(-15deg) contrast(0.8) brightness(1.1);
+  -webkit-filter: saturate(1.4) sepia(0.25) hue-rotate(-15deg) contrast(0.8) brightness(1.1);
   -ms-filter:saturate(1.4) sepia(0.25) hue-rotate(-15deg) contrast(0.8) brightness(1.1);
 }
 
@@ -64,20 +64,20 @@
 }
 
 .hudson {
-  -webkit-filter: contrast(1.2) brightness(0.9) hue-rotate(-10deg);
   filter: contrast(1.2) brightness(0.9) hue-rotate(-10deg);
+  -webkit-filter: contrast(1.2) brightness(0.9) hue-rotate(-10deg);
   -ms-filter:contrast(1.2) brightness(0.9) hue-rotate(-10deg);
 }
 
 .brannan {
-  -webkit-filter: sepia(0.5) contrast(1.4);
   filter: sepia(0.5) contrast(1.4);
+  -webkit-filter: sepia(0.5) contrast(1.4);
   -ms-filter:sepia(0.5) contrast(1.4);
 }
 
 .nineteen77{
-  -webkit-filter: sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8);
   filter: sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8);
+  -webkit-filter: sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8);
   -ms-filter:sepia(0.5) hue-rotate(-30deg) saturate(1.2) contrast(0.8);
 }
 
